@@ -69,12 +69,30 @@ public class eocv_test_tyma extends OpMode {
 
         Mat grey = new Mat();
 
+
+
+        public void init(Mat input) {
+            // Executed before the first call to processFrame
+        }
+
+
         public Mat processFrame(Mat input) {
+            // Executed every time a new frame is dispatched
 
             // this - as the docs said \-.-/ - will convert the view from the camera into black & white
             Imgproc.cvtColor(input, grey, Imgproc.COLOR_RGB2GRAY);
 
-            return input;
+            return input; // Return the image that will be displayed in the viewport
+            // (In this case the input mat directly)
+
+        }
+
+
+        public void onViewportTapped() {
+            // Executed when the image display is clicked by the mouse or tapped
+            // This method is executed from the UI thread, so be careful to not
+            // perform any sort heavy processing here! Your app might hang otherwise
+
 
         }
     }
