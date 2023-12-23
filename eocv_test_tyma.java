@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.opencv.core.Mat;
+import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvPipeline;
@@ -64,7 +65,14 @@ public class eocv_test_tyma extends OpMode {
     }
 
     class pipeline extends OpenCvPipeline {
+
+        Mat grey = new Mat();
+
         public Mat processFrame(Mat input) {
+
+            // this - as the docs said \-.-/ - will convert the view from the camera into black & white
+            Imgproc.cvtColor(input, grey, Imgproc.COLOR_RGB2GRAY);
+
             return input;
 
         }
