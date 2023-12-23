@@ -1,13 +1,19 @@
 package org.firstinspires.ftc.teamcode.openCV__autoDetect;
 
+import static org.openftc.easyopencv.OpenCvCameraRotation.UPRIGHT;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.opencv.core.Mat;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 import org.openftc.easyopencv.OpenCvWebcam;
 
@@ -42,8 +48,7 @@ public class eocv_test_tyma extends OpMode {
 
                  example: camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
                  */
-                webCam1.startStreaming(1920, 1080, OpenCvCameraRotation.UPRIGHT);
-
+                webCam1.startStreaming(0, 0, UPRIGHT);
             }
 
             @Override
@@ -66,4 +71,5 @@ public class eocv_test_tyma extends OpMode {
     }
 }
 
-///
+
+////////////////taymaaaa iz da bezt programmer
