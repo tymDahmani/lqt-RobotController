@@ -15,6 +15,7 @@ import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvPipeline;
 import org.openftc.easyopencv.OpenCvWebcam;
 
@@ -49,7 +50,7 @@ public class eocv_test_tyma extends OpMode {
 
                  example: camera.startStreaming(320, 240, OpenCvCameraRotation.UPRIGHT);
                  */
-                webCam1.startStreaming(0, 0, UPRIGHT);
+                webCam1.startStreaming(1920, 1080, OpenCvCameraRotation.UPRIGHT);
             }
 
             @Override
