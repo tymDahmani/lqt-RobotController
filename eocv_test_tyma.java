@@ -73,3 +73,4 @@ public class eocv_test_tyma extends OpMode {
 
 
 ////////////////taymaaaa iz da bezt programmer
+//my mentor iz da bezt mentor ewer :3
