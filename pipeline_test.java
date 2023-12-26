@@ -59,7 +59,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
         Mat red = new Mat();
 
-        boolean toggleRecording = false;
+//        boolean toggleRecording = false;
 
         // here add the rectangles for each side of the spike marks so the image will be a little more limited for the camera to read
         // please do input the size of the rectangles here instead of the 0's, as they will cover the size of the team prop
@@ -71,7 +71,15 @@ import org.openftc.easyopencv.OpenCvPipeline;
         double lowThresholdVal = 0.4; // = 40%. below, we'll use an if statement stating that if the value is above 0.4/40%means it is a team prop
 
         // an index to store the position of the team prop (1; left, 2; mid, 3; right)
-        int pos_of_tp = 0;
+//        public int pos_of_tp = 0;
+
+        public enum pos_of_tp {
+            LEFT,
+            MID,
+            RIGHT
+        }
+        static pos_of_tp pos_of_tp;
+
 
         @Override
         public Mat processFrame(Mat input) {
@@ -122,13 +130,13 @@ import org.openftc.easyopencv.OpenCvPipeline;
             boolean rightTP = rightValue > lowThresholdVal;
 
             if (leftTP) {
-                pos_of_tp = 1;
+                pos_of_tp = pos_of_tp.LEFT;
 
             } else if (midTP) {
-                pos_of_tp = 2;
+                pos_of_tp = pos_of_tp.MID;
 
             } else if (rightTP) {
-                pos_of_tp = 3;
+                pos_of_tp = pos_of_tp.RIGHT;
 
             } else {
                 telemetry.addLine("non detected!");
@@ -143,8 +151,11 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
         }
 
+        public pipeline_test.pos_of_tp getPos_of_tp() {
+            return pos_of_tp;
+        }
 
-//        public void onViewportTapped() {
+        //        public void onViewportTapped() {
 //            // Executed when the image display is clicked by the mouse or tapped
 //            // This method is executed from the UI thread, so be careful to not
 //            // perform any sort heavy processing here! Your app might hang otherwise
