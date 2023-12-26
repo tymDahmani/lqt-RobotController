@@ -128,8 +128,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
                     input,
                     leftSpike.tl(),  // Top-left corner of the rectangle
                     leftSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 255, 0),  // Green color (BGR values)
-                    4  // Thickness of the rectangle border
+                    new Scalar(0, 54, 0),  // Green color (BGR values)
+                    2  // Thickness of the rectangle border
             );
 
             // the box on the mid spike
@@ -137,8 +137,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
                     input,
                     midSpike.tl(),  // Top-left corner of the rectangle
                     midSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 255, 0),  // Green color (BGR values)
-                    4  // Thickness of the rectangle border
+                    new Scalar(0, 54, 0),  // Green color (BGR values)
+                    2  // Thickness of the rectangle border
             );
 
             // the box on the right spike
@@ -146,8 +146,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
                     input,
                     rightSpike.tl(),  // Top-left corner of the rectangle
                     rightSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 255, 0),  // Green color (BGR values)
-                    4  // Thickness of the rectangle border
+                    new Scalar(0, 54, 0),  // Green color (BGR values)
+                    2  // Thickness of the rectangle border
             );
 
             // colors back to HSV
