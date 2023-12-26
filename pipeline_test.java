@@ -172,6 +172,12 @@ import org.openftc.easyopencv.OpenCvPipeline;
             telemetry.addData("left percentage", Math.round(leftValue * 100) + "%");
             telemetry.addData("mid percentage", Math.round(midValue * 100) + "%");
             telemetry.addData("right percentage", Math.round(rightValue * 100) + "%");
+            telemetry.update();
+
+            // release, yay
+            left.release();
+            mid.release();
+            right.release();
 
 
             // if the team prop's value's thresholder is higher than the lowest val we defined above, then it is a team prop
