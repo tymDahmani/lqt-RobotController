@@ -1,8 +1,9 @@
 package org.firstinspires.ftc.teamcode.openCV__autoDetect;
 
-import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.telemetry;
+
 import static java.lang.Thread.sleep;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
@@ -57,6 +58,9 @@ import org.openftc.easyopencv.OpenCvPipeline;
         // our camera stream image:
         // webCam1.startStreaming(1920, 1080, OpenCvCameraRotation.UPRIGHT);
 
+            public Telemetry telemetry;
+
+
         Mat red = new Mat();
 
 //        boolean toggleRecording = false;
@@ -69,6 +73,10 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
         // the lowest threshold value needed for the team prop
         double lowThresholdVal = 0.4; // = 40%. below, we'll use an if statement stating that if the value is above 0.4/40%means it is a team prop
+
+        public pipeline_test() {
+            this.telemetry = telemetry;
+        }
 
         // an index to store the position of the team prop (1; left, 2; mid, 3; right)
 //        public int pos_of_tp = 0;

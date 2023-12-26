@@ -49,9 +49,11 @@ public class pipelineDetectTest_opmode extends LinearOpMode {
         switch (pipeline_test.pos_of_tp) {
             case LEFT:
                 // code to be executed if expression == value1
+                telemetry.addLine("position detected is left");
                 break;
             case MID:
                 // code to be executed if expression == value2
+                telemetry.addLine("position detected is right");
                 break;
             // more cases as needed
             case RIGHT:
