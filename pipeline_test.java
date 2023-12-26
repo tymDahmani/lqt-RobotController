@@ -63,9 +63,9 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
         // here add the rectangles for each side of the spike marks so the image will be a little more limited for the camera to read
         // please do input the size of the rectangles here instead of the 0's, as they will cover the size of the team prop
-        final Rect leftSpike = new Rect(0, 0, 0, 0);
-        final Rect midSpike = new Rect(0, 0, 0, 0);
-        final Rect rightSpike = new Rect(0, 0, 0, 0);
+        final Rect leftSpike = new Rect(10, 10, 10, 10);
+        final Rect midSpike = new Rect(30, 30, 10, 10);
+        final Rect rightSpike = new Rect(60, 60, 10, 10);
 
         // the lowest threshold value needed for the team prop
         double lowThresholdVal = 0.4; // = 40%. below, we'll use an if statement stating that if the value is above 0.4/40%means it is a team prop
@@ -93,8 +93,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
             // 1; hue, 2; saturation, 3; value (check HSV image to know more)
             // the values here must be for the red team prop
-            Scalar lowHSV = new Scalar(0, 0, 0);
-            Scalar highHSV = new Scalar(0, 0, 0);
+            Scalar lowHSV = new Scalar(0, 100, 100);
+            Scalar highHSV = new Scalar(0, 255, 255);
 
             // thresholding - will convert the colors in the range we give to the robot into white and the rest to black
             Core.inRange(red, lowHSV, highHSV, red);
