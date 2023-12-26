@@ -111,8 +111,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
             // 1; hue, 2; saturation, 3; value (check HSV image to know more)
             // the values here must be for the red team prop
-            Scalar lowHSV = new Scalar(176.5, 71, 80);
-            Scalar highHSV = new Scalar(176.5, 97, 98);
+            Scalar lowHSV = new Scalar(176.5, 58, 61);
+            Scalar highHSV = new Scalar(176.5, 100, 100);
 
             // thresholding - will convert the colors in the range we give to the robot into white and the rest to black
             Core.inRange(red, lowHSV, highHSV, red);
