@@ -114,14 +114,14 @@ import org.openftc.easyopencv.OpenCvPipeline;
             mid.release();
             right.release();
 
-            // telemetry stuff :O to show the values we've got
-            telemetry.addData("left raw value", (int) Core.sumElems(left).val[0]);
-            telemetry.addData("mid raw value", (int) Core.sumElems(mid).val[0]);
-            telemetry.addData("right raw value", (int) Core.sumElems(right).val[0]);
-
-            telemetry.addData("left percentage", Math.round(leftValue * 100) + "%");
-            telemetry.addData("mid percentage", Math.round(midValue * 100) + "%");
-            telemetry.addData("right percentage", Math.round(rightValue * 100) + "%");
+//            // telemetry stuff :O to show the values we've got
+//            telemetry.addData("left raw value", (int) Core.sumElems(left).val[0]);
+//            telemetry.addData("mid raw value", (int) Core.sumElems(mid).val[0]);
+//            telemetry.addData("right raw value", (int) Core.sumElems(right).val[0]);
+//
+//            telemetry.addData("left percentage", Math.round(leftValue * 100) + "%");
+//            telemetry.addData("mid percentage", Math.round(midValue * 100) + "%");
+//            telemetry.addData("right percentage", Math.round(rightValue * 100) + "%");
 
 
             // if the team prop's value's thresholder is higher than the lowest val we defined above, then it is a team prop
