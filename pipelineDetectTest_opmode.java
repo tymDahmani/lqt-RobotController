@@ -23,7 +23,7 @@ public class pipelineDetectTest_opmode extends LinearOpMode {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webCam = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        pipeline_test detector = new pipeline_test();
+        pipeline_test detector = new pipeline_test(telemetry);
         webCam.setPipeline(detector);
 
         webCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()

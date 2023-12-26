@@ -74,7 +74,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
         // the lowest threshold value needed for the team prop
         double lowThresholdVal = 0.4; // = 40%. below, we'll use an if statement stating that if the value is above 0.4/40%means it is a team prop
 
-        public pipeline_test() {
+        public pipeline_test(Telemetry telemetry) {
             this.telemetry = telemetry;
         }
 
