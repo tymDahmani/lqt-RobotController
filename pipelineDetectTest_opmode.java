@@ -12,7 +12,7 @@ import org.openftc.easyopencv.OpenCvWebcam;
 @Autonomous
 public class pipelineDetectTest_opmode extends LinearOpMode {
 
-    OpenCvWebcam webCam = null;
+    OpenCvWebcam webCam;
 
 //    WebcamName webcamName = hardwareMap.get(WebcamName.class, "webCam1");
 
