@@ -122,12 +122,44 @@ import org.openftc.easyopencv.OpenCvPipeline;
             Mat mid = red.submat(midSpike);
             Mat right = red.submat(rightSpike);
 
+            // the box on the left spike
+            Imgproc.cvtColor(input, red, Imgproc.COLOR_HSV2BGR);
+            Imgproc.rectangle(
+                    input,
+                    leftSpike.tl(),  // Top-left corner of the rectangle
+                    leftSpike.br(),  // Bottom-right corner of the rectangle
+                    new Scalar(0, 255, 0),  // Green color (BGR values)
+                    4  // Thickness of the rectangle border
+            );
+
+            // the box on the mid spike
+            Imgproc.rectangle(
+                    input,
+                    midSpike.tl(),  // Top-left corner of the rectangle
+                    midSpike.br(),  // Bottom-right corner of the rectangle
+                    new Scalar(0, 255, 0),  // Green color (BGR values)
+                    4  // Thickness of the rectangle border
+            );
+
+            // the box on the right spike
+            Imgproc.rectangle(
+                    input,
+                    rightSpike.tl(),  // Top-left corner of the rectangle
+                    rightSpike.br(),  // Bottom-right corner of the rectangle
+                    new Scalar(0, 255, 0),  // Green color (BGR values)
+                    4  // Thickness of the rectangle border
+            );
+
+            // colors back to HSV
+            Imgproc.cvtColor(input, red, Imgproc.COLOR_BGR2HSV);
+
+
             // idk sth about calculating the white area of the object or sth, just gotta write it for now (to check what percentage of the matrix became white)
             double leftValue = Core.sumElems(left).val[0] / leftSpike.area() / 255 /* this 255 is the highest scalar of the hsv values */;
             double midValue = Core.sumElems(mid).val[0] / midSpike.area() / 255;
             double rightValue = Core.sumElems(right).val[0] / rightSpike.area() / 255;
 
-            // release, yaay
+            // release, yay
             left.release();
             mid.release();
             right.release();
