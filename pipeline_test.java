@@ -118,7 +118,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
             Scalar highHSV = new Scalar(180, 255, 255);
 
             // thresholding - will convert the colors in the range we give to the robot into white and the rest to black
-            Core.inRange(red, lowHSV, highHSV, red);
+            Core.inRange(input, lowHSV, highHSV, red);
 
             // extract the rectangles into the image
             Mat left = red.submat(leftSpike);
