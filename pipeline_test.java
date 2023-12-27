@@ -59,10 +59,18 @@ import org.openftc.easyopencv.OpenCvPipeline;
         // our camera stream image:
         // webCam1.startStreaming(1920, 1080, OpenCvCameraRotation.UPRIGHT);
 
-            public Telemetry telemetry;
+        public Telemetry telemetry;
 
-
+        // matrix for the image
         Mat red = new Mat();
+
+        // location vars
+        public enum pos_of_tp {
+            LEFT,
+            MID,
+            RIGHT
+        }
+        static pos_of_tp pos_of_tp;
 
 //        boolean toggleRecording = false;
 
@@ -91,12 +99,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
         // an index to store the position of the team prop (1; left, 2; mid, 3; right)
 //        public int pos_of_tp = 0;
 
-        public enum pos_of_tp {
-            LEFT,
-            MID,
-            RIGHT
-        }
-        static pos_of_tp pos_of_tp;
+
 
 
         @Override
