@@ -69,16 +69,16 @@ import org.openftc.easyopencv.OpenCvPipeline;
         // here add the rectangles for each side of the spike marks so the image will be a little more limited for the camera to read
         // please do input the size of the rectangles here instead of the 0's, as they will cover the size of the team prop
         final Rect leftSpike = new Rect(
-                new Point(60, 35),
-                new Point(120,75)
+                new Point(110, 300),
+                new Point(330,500)
         );
         final Rect midSpike = new Rect(
-                new Point(140, 35),
-                new Point(200,75)
+                new Point(420, 300),
+                new Point(650,500)
         );
         final Rect rightSpike = new Rect(
-                new Point(220, 35),
-                new Point(280,75)
+                new Point(750, 300),
+                new Point(1200,500)
         );
 
         // the lowest threshold value needed for the team prop
@@ -122,13 +122,15 @@ import org.openftc.easyopencv.OpenCvPipeline;
             Mat mid = red.submat(midSpike);
             Mat right = red.submat(rightSpike);
 
-            // the box on the left spike
-            Imgproc.cvtColor(input, red, Imgproc.COLOR_HSV2BGR);
+            // convert to rgb to draw the rects
+            Imgproc.cvtColor(input, red, Imgproc.COLOR_HSV2RGB);
+
+            // draw the box on the left spike
             Imgproc.rectangle(
                     input,
                     leftSpike.tl(),  // Top-left corner of the rectangle
                     leftSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 54, 0),  // Green color (BGR values)
+                    new Scalar(0, 246, 0),  // Green color
                     2  // Thickness of the rectangle border
             );
 
@@ -137,7 +139,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
                     input,
                     midSpike.tl(),  // Top-left corner of the rectangle
                     midSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 54, 0),  // Green color (BGR values)
+                    new Scalar(0, 246, 0),  // Green color
                     2  // Thickness of the rectangle border
             );
 
@@ -146,12 +148,14 @@ import org.openftc.easyopencv.OpenCvPipeline;
                     input,
                     rightSpike.tl(),  // Top-left corner of the rectangle
                     rightSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 54, 0),  // Green color (BGR values)
+                    new Scalar(0, 246, 0),  // Green color
                     2  // Thickness of the rectangle border
             );
 
+//            Imgproc.rectangle(input, leftSpike, new Scalar(0, 255, 0), 10); // can be used if the draw rect methods above didnt work
+
             // colors back to HSV
-            Imgproc.cvtColor(input, red, Imgproc.COLOR_BGR2HSV);
+            Imgproc.cvtColor(input, red, Imgproc.COLOR_RGB2HSV);
 
 
             // idk sth about calculating the white area of the object or sth, just gotta write it for now (to check what percentage of the matrix became white)
@@ -173,11 +177,6 @@ import org.openftc.easyopencv.OpenCvPipeline;
             telemetry.addData("mid percentage", Math.round(midValue * 100) + "%");
             telemetry.addData("right percentage", Math.round(rightValue * 100) + "%");
             telemetry.update();
-
-            // release, yay
-            left.release();
-            mid.release();
-            right.release();
 
 
             // if the team prop's value's thresholder is higher than the lowest val we defined above, then it is a team prop
@@ -202,8 +201,8 @@ import org.openftc.easyopencv.OpenCvPipeline;
             telemetry.update();
 
 
-            return input; // Return the image that will be displayed in the viewport
-            // (In this case the input mat directly)
+            return red; // Return the image that will be displayed in the viewport
+            // (In this case the input mat directly) - wrong, in the skystone code they returned the "mat" not the whole input.
 
         }
 
