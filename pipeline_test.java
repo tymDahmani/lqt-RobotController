@@ -126,40 +126,42 @@ import org.openftc.easyopencv.OpenCvPipeline;
             Mat right = red.submat(rightSpike);
 
 
-            // convert to rgb to draw the rects
-            Imgproc.cvtColor(input, red, Imgproc.COLOR_HSV2RGB);
+            if (true) {
+                // convert to rgb to draw the rects
+                Imgproc.cvtColor(input, red, Imgproc.COLOR_HSV2RGB);
 
-            // draw the box on the left spike
-            Imgproc.rectangle(
-                    red,
-                    leftSpike.tl(),  // Top-left corner of the rectangle
-                    leftSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 246, 0)  // Green color
+                // draw the box on the left spike
+                Imgproc.rectangle(
+                        red,
+                        leftSpike.tl(),  // Top-left corner of the rectangle
+                        leftSpike.br(),  // Bottom-right corner of the rectangle
+                        new Scalar(0, 246, 0)  // Green color
 //                    2  // Thickness of the rectangle border
-            );
+                );
 
-            // the box on the mid spike
-            Imgproc.rectangle(
-                    red,
-                    midSpike.tl(),  // Top-left corner of the rectangle
-                    midSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 246, 0)  // Green color
+                // the box on the mid spike
+                Imgproc.rectangle(
+                        red,
+                        midSpike.tl(),  // Top-left corner of the rectangle
+                        midSpike.br(),  // Bottom-right corner of the rectangle
+                        new Scalar(0, 246, 0)  // Green color
 //                    2  // Thickness of the rectangle border
-            );
+                );
 
-            // the box on the right spike
-            Imgproc.rectangle(
-                    red,
-                    rightSpike.tl(),  // Top-left corner of the rectangle
-                    rightSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 246, 0)  // Green color
+                // the box on the right spike
+                Imgproc.rectangle(
+                        red,
+                        rightSpike.tl(),  // Top-left corner of the rectangle
+                        rightSpike.br(),  // Bottom-right corner of the rectangle
+                        new Scalar(0, 246, 0)  // Green color
 //                    2  // Thickness of the rectangle border
-            );
+                );
 
 //            Imgproc.rectangle(input, leftSpike, new Scalar(0, 255, 0), 10); // can be used if the draw rect methods above didnt work
 
-            // colors back to HSV
-            Imgproc.cvtColor(input, red, Imgproc.COLOR_RGB2HSV);
+                // colors back to HSV
+                Imgproc.cvtColor(input, red, Imgproc.COLOR_RGB2HSV);
+            }
 
 
             // idk sth about calculating the white area of the object or sth, just gotta write it for now (to check what percentage of the matrix became white)
