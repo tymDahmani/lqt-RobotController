@@ -127,7 +127,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 
             // convert to rgb to draw the rects
-            Imgproc.cvtColor(input, red, Imgproc.COLOR_GRAY2BGR);
+            Imgproc.cvtColor(input, red, Imgproc.COLOR_GRAY2RGB);
 
             // draw the box on the left spike
             Imgproc.rectangle(
