@@ -110,7 +110,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 //            Imgproc.cvtColor(input, grey, Imgproc.COLOR_RGB2GRAY);
 
             // i wanna convert the rgb values colors range into hsv
-            Imgproc.cvtColor(input, red, Imgproc.COLOR_RGB2HSV);
+            Imgproc.cvtColor(input, red, Imgproc.COLOR_RGB2HSV); // these values have range of 0 - 180, where COLOR_RGB2HSV_FULL has a limit of 360
 
             // 1; hue, 2; saturation, 3; value (check HSV image to know more)
             // the values here must be for the red team prop
@@ -125,40 +125,40 @@ import org.openftc.easyopencv.OpenCvPipeline;
             Mat mid = red.submat(midSpike);
             Mat right = red.submat(rightSpike);
 
-            // convert to rgb to draw the rects
-            Imgproc.cvtColor(input, red, Imgproc.COLOR_HSV2RGB);
+//            // convert to rgb to draw the rects
+//            Imgproc.cvtColor(input, red, Imgproc.COLOR_HSV2RGB);
 
-            // draw the box on the left spike
-            Imgproc.rectangle(
-                    input,
-                    leftSpike.tl(),  // Top-left corner of the rectangle
-                    leftSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 246, 0),  // Green color
-                    2  // Thickness of the rectangle border
-            );
-
-            // the box on the mid spike
-            Imgproc.rectangle(
-                    input,
-                    midSpike.tl(),  // Top-left corner of the rectangle
-                    midSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 246, 0),  // Green color
-                    2  // Thickness of the rectangle border
-            );
-
-            // the box on the right spike
-            Imgproc.rectangle(
-                    input,
-                    rightSpike.tl(),  // Top-left corner of the rectangle
-                    rightSpike.br(),  // Bottom-right corner of the rectangle
-                    new Scalar(0, 246, 0),  // Green color
-                    2  // Thickness of the rectangle border
-            );
+//            // draw the box on the left spike
+//            Imgproc.rectangle(
+//                    input,
+//                    leftSpike.tl(),  // Top-left corner of the rectangle
+//                    leftSpike.br(),  // Bottom-right corner of the rectangle
+//                    new Scalar(0, 246, 0),  // Green color
+//                    2  // Thickness of the rectangle border
+//            );
+//
+//            // the box on the mid spike
+//            Imgproc.rectangle(
+//                    input,
+//                    midSpike.tl(),  // Top-left corner of the rectangle
+//                    midSpike.br(),  // Bottom-right corner of the rectangle
+//                    new Scalar(0, 246, 0),  // Green color
+//                    2  // Thickness of the rectangle border
+//            );
+//
+//            // the box on the right spike
+//            Imgproc.rectangle(
+//                    input,
+//                    rightSpike.tl(),  // Top-left corner of the rectangle
+//                    rightSpike.br(),  // Bottom-right corner of the rectangle
+//                    new Scalar(0, 246, 0),  // Green color
+//                    2  // Thickness of the rectangle border
+//            );
 
 //            Imgproc.rectangle(input, leftSpike, new Scalar(0, 255, 0), 10); // can be used if the draw rect methods above didnt work
 
-            // colors back to HSV
-            Imgproc.cvtColor(input, red, Imgproc.COLOR_RGB2HSV);
+//            // colors back to HSV
+//            Imgproc.cvtColor(input, red, Imgproc.COLOR_RGB2HSV);
 
 
             // idk sth about calculating the white area of the object or sth, just gotta write it for now (to check what percentage of the matrix became white)
@@ -205,7 +205,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 
             return red; // Return the image that will be displayed in the viewport
-            // (In this case the input mat directly) - wrong, in the skystone code they returned the "mat" not the whole input.
+            // (In this case the input mat directly) - wrong, in the skystone code they returned the "mat" not the input image.
 
         }
 
