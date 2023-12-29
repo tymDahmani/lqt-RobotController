@@ -126,36 +126,6 @@ public class pipeline_test extends OpenCvPipeline {
         Mat right = red.submat(rightSpike);
 
 
-//            // convert to rgb to draw the rects
-//            Imgproc.cvtColor(input, red, Imgproc.COLOR_GRAY2RGB);
-//
-//            // draw the box on the left spike
-//            Imgproc.rectangle(
-//                    red,
-//                    leftSpike.tl(),  // Top-left corner of the rectangle
-//                    leftSpike.br(),  // Bottom-right corner of the rectangle
-//                    new Scalar(0, 246, 0)  // Green color
-////                    2  // Thickness of the rectangle border
-//            );
-//
-//            // the box on the mid spike
-//            Imgproc.rectangle(
-//                    red,
-//                    midSpike.tl(),  // Top-left corner of the rectangle
-//                    midSpike.br(),  // Bottom-right corner of the rectangle
-//                    new Scalar(0, 246, 0)  // Green color
-////                    2  // Thickness of the rectangle border
-//            );
-//
-//            // the box on the right spike
-//            Imgproc.rectangle(
-//                    red,
-//                    rightSpike.tl(),  // Top-left corner of the rectangle
-//                    rightSpike.br(),  // Bottom-right corner of the rectangle
-//                    new Scalar(0, 246, 0)  // Green color
-////                    2  // Thickness of the rectangle border
-//            );
-//
 ////            Imgproc.rectangle(input, leftSpike, new Scalar(0, 255, 0), 10); // can be used if the draw rect methods above didnt work
 //
 //            // colors back to HSV
@@ -204,15 +174,49 @@ public class pipeline_test extends OpenCvPipeline {
         telemetry.addData("the detected position for the team prop:", pos_of_tp);
         telemetry.update();
 
-        Imgproc.cvtColor(red, red, Imgproc.COLOR_GRAY2RGB);
 
-        Scalar leftRect = new Scalar(255, 0, 0);
-        Scalar midRect = new Scalar(0, 255, 0);
-        Scalar rightRect = new Scalar(0, 0, 255);
 
-        Imgproc.rectangle(red, leftSpike, pos_of_tp == POS_OF_TP.LEFT? leftRect:rightRect);
-        Imgproc.rectangle(red, midSpike, pos_of_tp == POS_OF_TP.MID? leftRect:midRect);
-        Imgproc.rectangle(red, rightSpike, pos_of_tp == POS_OF_TP.RIGHT? leftRect:rightRect);
+            // convert to rgb to draw the rects
+            Imgproc.cvtColor(red, red, Imgproc.COLOR_GRAY2RGB);
+//
+//            // draw the box on the left spike
+            Imgproc.rectangle(
+                    red,
+                    leftSpike.tl(),  // Top-left corner of the rectangle
+                    leftSpike.br(),  // Bottom-right corner of the rectangle
+                    new Scalar(0, 255, 0),  // Green color
+                    4  // Thickness of the rectangle border
+            );
+
+            // the box on the mid spike
+            Imgproc.rectangle(
+                    red,
+                    midSpike.tl(),  // Top-left corner of the rectangle
+                    midSpike.br(),  // Bottom-right corner of the rectangle
+                    new Scalar(0, 255, 0), // Green color
+                    4  // Thickness of the rectangle border
+            );
+
+            // the box on the right spike
+            Imgproc.rectangle(
+                    red,
+                    rightSpike.tl(),  // Top-left corner of the rectangle
+                    rightSpike.br(),  // Bottom-right corner of the rectangle
+                    new Scalar(0, 255, 0),  // Green color
+                    4  // Thickness of the rectangle border
+            );
+
+
+
+//        Imgproc.cvtColor(red, red, Imgproc.COLOR_GRAY2RGB);
+//
+//        Scalar leftRect = new Scalar(255, 0, 0);
+//        Scalar midRect = new Scalar(0, 255, 0);
+//        Scalar rightRect = new Scalar(0, 0, 255);
+//
+//        Imgproc.rectangle(red, leftSpike, pos_of_tp == POS_OF_TP.LEFT? leftRect:rightRect);
+//        Imgproc.rectangle(red, midSpike, pos_of_tp == POS_OF_TP.MID? leftRect:midRect);
+//        Imgproc.rectangle(red, rightSpike, pos_of_tp == POS_OF_TP.RIGHT? leftRect:rightRect);
 
 //        Imgproc.rectangle(mat, LEFT_ROI, location == Location.LEFT? colorSkystone:colorStone);
 //        Imgproc.rectangle(mat, RIGHT_ROI, location == Location.RIGHT? colorSkystone:colorStone);
