@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TaymaHSV;
+package org.firstinspires.ftc.teamcode.openCV__autoDetect;
 
 
 import static java.lang.Thread.sleep;
