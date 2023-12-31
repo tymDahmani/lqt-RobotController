@@ -140,7 +140,7 @@ public class auto1test extends LinearOpMode {
         gripperR.setPosition(pos);
 
         // close
-        gripperR.setPosition(pos);
+        gripperR.setPosition(-pos);
 
 
         sleep(100);
@@ -161,6 +161,10 @@ public class auto1test extends LinearOpMode {
 
         // yellow pixel servo move
         gripperL.setPosition(pos);
+
+        // close
+        gripperL.setPosition(-pos);
+
 
         sleep(100);
 
