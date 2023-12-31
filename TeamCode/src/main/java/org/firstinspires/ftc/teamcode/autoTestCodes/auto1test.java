@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.autoTestCodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -9,10 +10,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class auto1test extends LinearOpMode {
         // robot actuators
     // drive train
-    DcMotor leftF;
-    DcMotor leftB;
-    DcMotor rightF;
-    DcMotor rightB;
+    DcMotorEx leftF;
+    DcMotorEx leftB;
+    DcMotorEx rightF;
+    DcMotorEx rightB;
 
     // slides
     DcMotor slideL;
@@ -46,10 +47,6 @@ public class auto1test extends LinearOpMode {
 
         while (opModeInInit()) {
             // hardware map
-            leftF = hardwareMap.dcMotor.get("motor1");
-            leftB = hardwareMap.dcMotor.get("motor2");
-            rightF = hardwareMap.dcMotor.get("motor3");
-            rightB = hardwareMap.dcMotor.get("motor4");
             slideL = hardwareMap.dcMotor.get("slide1");
             slideR = hardwareMap.dcMotor.get("slide2");
             armBase = hardwareMap.dcMotor.get("armBase");
@@ -115,17 +112,17 @@ public class auto1test extends LinearOpMode {
         }
     }
 
-    void move(int dis, int pwr) {
+    void move(int dis, int vel) {
 
         leftF.setTargetPosition(dis);
         leftB.setTargetPosition(dis);
         rightF.setTargetPosition(dis);
         rightB.setTargetPosition(dis);
 
-        leftF.setPower(pwr);
-        leftB.setPower(pwr);
-        rightF.setPower(pwr);
-        rightB.setPower(pwr);
+        leftF.setVelocity(vel);
+        leftB.setVelocity(vel);
+        rightF.setVelocity(vel);
+        rightB.setVelocity(vel);
 
         while (leftF.isBusy()) {
             idle();
