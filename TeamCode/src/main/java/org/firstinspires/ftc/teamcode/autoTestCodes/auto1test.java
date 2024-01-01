@@ -53,17 +53,11 @@ public class auto1test extends LinearOpMode {
     int tpPos = 2;
 
     // vars for the driveEncoder method - which calculates the ticks needed for the given distance, time and which motors
-    static final double tprLeftF = 3000; // ticks per revolution
-//    static final double tprLeftB = 3000;
-//    static final double tprRightF = 3000;
-//    static final double tprRightB = 3000;
+    static final double tpr = 3000; // ticks per revolution
     
     static final double MOTOR_GEAR_REDUCTION = 1.0; // sth about the motor gears and ratios (This is < 1.0 if geared UP)
     static final double WHEEL_DIAMETER_CM = 7.0; // For figuring circumference
-    static final double cpmLeftF = (tprLeftF * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415); // cmp = counts per meter
-//    static final double cpmLeftB = (tprLeftB * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415);
-//    static final double cpmRightF = (tprRightF * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415);
-//    static final double cpmRightB = (tprRightB * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415);
+    static final double cpMeter = (tpr * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415); // cmp = counts per meter
     static final double DRIVE_SPEED = 0.6;
     static final double TURN_SPEED = 0.5;
 
@@ -212,10 +206,10 @@ public class auto1test extends LinearOpMode {
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            leftFTar = leftF.getCurrentPosition() + (int) (leftMeters * cpmLeftF);
-            leftBTar = leftB.getCurrentPosition() + (int) (leftMeters * cpmLeftF);
-            rightFTar = leftF.getCurrentPosition() + (int) (rightMeters * cpmLeftF);
-            rightBTar = leftB.getCurrentPosition() + (int) (rightMeters * cpmLeftF);
+            leftFTar = leftF.getCurrentPosition() + (int) (leftMeters * cpMeter);
+            leftBTar = leftB.getCurrentPosition() + (int) (leftMeters * cpMeter);
+            rightFTar = leftF.getCurrentPosition() + (int) (rightMeters * cpMeter);
+            rightBTar = leftB.getCurrentPosition() + (int) (rightMeters * cpMeter);
             leftF.setTargetPosition(leftFTar);
             leftB.setTargetPosition(leftBTar);
             rightF.setTargetPosition(rightFTar);
