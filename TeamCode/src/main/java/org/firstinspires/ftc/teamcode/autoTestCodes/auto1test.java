@@ -5,6 +5,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+
+    // NOTE: the driveEncoder method can be used instead of the move method to move the robot.
+// the driveEncoder method takes the inputs: motor speed, left motor meters (for both front and back), right meters, timeout. and calculates the ticks needed and
+// applies the to the motors and gives the speed in the parameters and makes the motors move.
 
 
 public class auto1test extends LinearOpMode {
@@ -32,6 +38,11 @@ public class auto1test extends LinearOpMode {
     Servo gripperL;
     Servo gripperR;
 
+    //elapsed time
+    ElapsedTime runtime = new ElapsedTime();
+
+
+
 
         // vars
     // servo position
@@ -40,6 +51,25 @@ public class auto1test extends LinearOpMode {
 
     // pixel pos (left, mid, or right - 1, 2 ,3)
     int tpPos = 2;
+
+    // vars for the driveEncoder method - which calculates the ticks needed for the given distance, time and which motors
+    static final double tprLeftF = 3000; // ticks per revolution
+//    static final double tprLeftB = 3000;
+//    static final double tprRightF = 3000;
+//    static final double tprRightB = 3000;
+    
+    static final double MOTOR_GEAR_REDUCTION = 1.0; // sth about the motor gears and ratios (This is < 1.0 if geared UP)
+    static final double WHEEL_DIAMETER_CM = 7.0; // For figuring circumference
+    static final double cpmLeftF = (tprLeftF * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415); // cmp = counts per meter
+//    static final double cpmLeftB = (tprLeftB * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415);
+//    static final double cpmRightF = (tprRightF * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415);
+//    static final double cpmRightB = (tprRightB * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415);
+    static final double DRIVE_SPEED = 0.6;
+    static final double TURN_SPEED = 0.5;
+
+
+
+
 
 
     @Override
@@ -171,5 +201,52 @@ public class auto1test extends LinearOpMode {
 
     }
 
+    public void encoderDrive(double speed, double leftMeters, double rightMeters, double timeoutS) {
 
+        int leftFTar;
+        int leftBTar;
+        int rightFTar;
+        int rightBTar;
+
+        // Ensure that the opmode is still active
+        if (opModeIsActive()) {
+
+            // Determine new target position, and pass to motor controller
+            leftFTar = leftF.getCurrentPosition() + (int) (leftMeters * cpmLeftF);
+            leftBTar = leftB.getCurrentPosition() + (int) (leftMeters * cpmLeftF);
+            rightFTar = leftF.getCurrentPosition() + (int) (rightMeters * cpmLeftF);
+            rightBTar = leftB.getCurrentPosition() + (int) (rightMeters * cpmLeftF);
+            leftF.setTargetPosition(leftFTar);
+            leftB.setTargetPosition(leftBTar);
+            rightF.setTargetPosition(rightFTar);
+            rightB.setTargetPosition(rightBTar);
+
+            // Turn On RUN_TO_POSITION
+            leftF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            // reset the timeout time and start motion.
+            runtime.reset();
+            leftF.setPower(Math.abs(speed));
+            leftB.setPower(Math.abs(speed));
+            rightF.setPower(Math.abs(speed));
+            rightB.setPower(Math.abs(speed));
+            // keep looping while we are still active, and there is time left, and both motors are running.
+            // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
+            // its target position, the motion will stop. This is "safer" in the event that the robot will
+            // always end the motion as soon as possible.
+            // However, if you require that BOTH motors have finished their moves before the robot continues
+            // onto the next step, use (isBusy() || isBusy()) in the loop test.
+            while (opModeIsActive() &&
+                    (runtime.seconds() < timeoutS) &&
+                    (leftF.isBusy() && leftB.isBusy())) {
+                // Display it for the driver.
+                telemetry.addData("Ticks needed to be ticked", "Running to %7d :%7d", leftFTar, rightFTar);
+                telemetry.addData("ticks ticked", "Running at %7d :%7d", leftF.getCurrentPosition(), rightF.getCurrentPosition());
+                telemetry.update();
+            }
+        }
+    }
 }
