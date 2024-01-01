@@ -1,9 +1,5 @@
 package org.firstinspires.ftc.teamcode.autoTestCodes;
 
-import static org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test.POS_OF_TP.LEFT;
-import static org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test.POS_OF_TP.MID;
-import static org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test.POS_OF_TP.RIGHT;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -25,7 +21,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 // encoderDrive(DRIVE_SPEED, 1, 1, 5.0); // S1: Forward 1 meter with 5 Sec timeout
 
 
-public class auto1test extends LinearOpMode {
+public class Auto1test extends LinearOpMode {
 
     OpenCvCamera webCam;
 
@@ -175,7 +171,7 @@ public class auto1test extends LinearOpMode {
                 case RIGHT:
                     // code to be executed if none of the cases match
                     telemetry.addLine("position detected is right");
-                    tpPos = 3;
+//                    tpPos = 3; -- we used else so no need for this
                 default:
                     tpPos = 2;
                     telemetry.addLine("we couldnt find the team prop! we'll put it on the middle");
@@ -183,13 +179,38 @@ public class auto1test extends LinearOpMode {
 
 
             // turn to the tp pos detected by the camera
-            move(0, 0);
+            if (tpPos == 1) {
+                // turn movements to face the left spike mark
+                leftSpikeMark(0, 0);
+
+            } else if (tpPos == 2) {
+                // turn movements to face the mid spike mark
+                midSpikeMark(0, 0);
+
+            } else {
+                // turn movements to face the right spike mark
+                rightSpikeMark(0, 0);
+
+            }
+
 
             // put the purple pixel depending on the index given by the reads of the camera
             putPurplePixel(servoPos);
 
-            // go to the back drop
-            move(0, 0);
+            // go to the back drop on the column detected by the camera
+            if (tpPos == 1) {
+                // turn movements to face the left spike mark
+                leftSpikeMark(0, 0);
+
+            } else if (tpPos == 2) {
+                // turn movements to face the mid spike mark
+                midSpikeMark(0, 0);
+
+            } else {
+                // turn movements to face the right spike mark
+                rightSpikeMark(0, 0);
+
+            }
 
             // move the gripper arm and use the gripper to drop the pixel
             backDrop(0, 0, 0);
@@ -202,6 +223,66 @@ public class auto1test extends LinearOpMode {
 
     void move(int dis, int vel) {
 
+        leftF.setTargetPosition(dis);
+        leftB.setTargetPosition(dis);
+        rightF.setTargetPosition(dis);
+        rightB.setTargetPosition(dis);
+
+        leftF.setVelocity(vel);
+        leftB.setVelocity(vel);
+        rightF.setVelocity(vel);
+        rightB.setVelocity(vel);
+
+        while (leftF.isBusy()) {
+            idle();
+        }
+
+        // let the robot calm down
+        sleep(100);
+
+    }
+
+    void leftSpikeMark (int dis, int vel) {
+        leftF.setTargetPosition(dis);
+        leftB.setTargetPosition(dis);
+        rightF.setTargetPosition(dis);
+        rightB.setTargetPosition(dis);
+
+        leftF.setVelocity(vel);
+        leftB.setVelocity(vel);
+        rightF.setVelocity(vel);
+        rightB.setVelocity(vel);
+
+        while (leftF.isBusy()) {
+            idle();
+        }
+
+        // let the robot calm down
+        sleep(100);
+
+    }
+
+    void midSpikeMark (int dis, int vel) {
+        leftF.setTargetPosition(dis);
+        leftB.setTargetPosition(dis);
+        rightF.setTargetPosition(dis);
+        rightB.setTargetPosition(dis);
+
+        leftF.setVelocity(vel);
+        leftB.setVelocity(vel);
+        rightF.setVelocity(vel);
+        rightB.setVelocity(vel);
+
+        while (leftF.isBusy()) {
+            idle();
+        }
+
+        // let the robot calm down
+        sleep(100);
+
+    }
+
+    void rightSpikeMark (int dis, int vel) {
         leftF.setTargetPosition(dis);
         leftB.setTargetPosition(dis);
         rightF.setTargetPosition(dis);
