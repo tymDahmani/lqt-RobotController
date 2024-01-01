@@ -55,6 +55,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 
 public class pipeline_test extends OpenCvPipeline {
+    public static int POS_OF_TP;
 
     // our camera stream image:
     // webCam1.startStreaming(1920, 1080, OpenCvCameraRotation.UPRIGHT);
@@ -159,17 +160,19 @@ public class pipeline_test extends OpenCvPipeline {
         boolean rightTP = rightValue > lowThresholdVal;
 
         if (leftTP) {
-            pos_of_tp = POS_OF_TP.LEFT;
+            pos_of_tp = pos_of_tp.LEFT;
 
         } else if (midTP) {
-            pos_of_tp = POS_OF_TP.MID;
+            pos_of_tp = pos_of_tp.MID;
 
         } else if (rightTP) {
-            pos_of_tp = POS_OF_TP.RIGHT;
+            pos_of_tp = pos_of_tp.RIGHT;
 
         } else {
             telemetry.addLine("non detected!");
         }
+
+
 
         telemetry.addData("the detected position for the team prop:", pos_of_tp);
         telemetry.update();
@@ -226,7 +229,7 @@ public class pipeline_test extends OpenCvPipeline {
 
     }
 
-    public pipeline_test.POS_OF_TP getPos_of_tp() {
+    public static pipeline_test.POS_OF_TP getPos_of_tp() {
         return pos_of_tp;
     }
 
