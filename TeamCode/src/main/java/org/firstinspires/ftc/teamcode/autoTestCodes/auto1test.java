@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.autoTestCodes;
 
+import static org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test.POS_OF_TP.LEFT;
+import static org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test.POS_OF_TP.MID;
+import static org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test.POS_OF_TP.RIGHT;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -7,13 +11,24 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
 
-    // NOTE: the driveEncoder method can be used instead of the move method to move the robot.
+
+// NOTE: the driveEncoder method can be used instead of the move method to move the robot.
 // the driveEncoder method takes the inputs: motor speed, left motor meters (for both front and back), right meters, timeout. and calculates the ticks needed and
 // applies the to the motors and gives the speed in the parameters and makes the motors move.
+// this is an example line:
+// encoderDrive(DRIVE_SPEED, 1, 1, 5.0); // S1: Forward 1 meter with 5 Sec timeout
 
 
 public class auto1test extends LinearOpMode {
+
+    OpenCvCamera webCam;
+
         // robot actuators
     // drive train
     DcMotorEx leftF;
@@ -68,6 +83,12 @@ public class auto1test extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        WebcamName webcamName = hardwareMap.get(WebcamName.class, "webCam1");
+        int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        webCam = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
+
+        pipeline_test colorDetector = new pipeline_test(telemetry);
+        webCam.setPipeline(colorDetector);
 
         while (opModeInInit()) {
             // hardware map
@@ -105,11 +126,33 @@ public class auto1test extends LinearOpMode {
             gripperArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
+
+            // eocv stuff
+            webCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+                @Override
+                public void onOpened() {
+                    // Usually this is where you'll want to start streaming from the camera (see section 4) this is in the easy opencv docs
+                    webCam.startStreaming(1920, 1080, OpenCvCameraRotation.UPRIGHT);
+
+
+                }
+                @Override
+                public void onError(int errorCode) {
+                    /*
+                     * This will be called if the camera could not be opened
+                     */
+                    telemetry.addLine("the camera is dead! help!");
+                }
+            });
+
+
+
         }
         waitForStart();
 
         while (opModeIsActive()) {
             // turn on the camera. + init the eocv pipeline class or whatever so it would be ready to work - better use a function for this or a whole class
+            // done above in the init step
 
             // move forward to read the tp
             move(0, 0);
@@ -117,7 +160,27 @@ public class auto1test extends LinearOpMode {
             // read the team prop (either w eocv or ml)
                 // if the camera read nothing put it in the mid (default pos), which means the default pos num will be 2
             // make sure to store the class's returnings for the tp pos in this var (1=left, 2=mid, 3=right):
-            tpPos = 2;
+            switch (pipeline_test.getPos_of_tp()) {
+                case LEFT:
+                    // code to be executed if expression == LEFT
+                    telemetry.addLine("position detected is left");
+                    tpPos = 1;
+                    break;
+                case MID:
+                    // code to be executed if expression == MID
+                    telemetry.addLine("position detected is mid");
+                    tpPos = 2;
+                    break;
+                // more cases as needed
+                case RIGHT:
+                    // code to be executed if none of the cases match
+                    telemetry.addLine("position detected is right");
+                    tpPos = 3;
+                default:
+                    tpPos = 2;
+                    telemetry.addLine("we couldnt find the team prop! we'll put it on the middle");
+            }
+
 
             // turn to the tp pos detected by the camera
             move(0, 0);
