@@ -39,7 +39,7 @@ public class auto1test extends LinearOpMode {
 
 
     // pixel pos (left, mid, or right - 1, 2 ,3)
-    int tpPos = 0;
+    int tpPos = 2;
 
 
     @Override
@@ -47,13 +47,13 @@ public class auto1test extends LinearOpMode {
 
         while (opModeInInit()) {
             // hardware map
-            slideL = hardwareMap.dcMotor.get("slide1");
-            slideR = hardwareMap.dcMotor.get("slide2");
-            armBase = hardwareMap.dcMotor.get("armBase");
-            gripperArm = hardwareMap.dcMotor.get("gripper arm");
-            tilting = hardwareMap.servo.get("tilting servo");
-            gripperL = hardwareMap.servo.get("gripper1");
-            gripperR = hardwareMap.servo.get("gripper2");
+            slideL = hardwareMap.get(DcMotor.class, "slide1");
+            slideR = hardwareMap.get(DcMotor.class,"slide2");
+            armBase = hardwareMap.get(DcMotor.class,"armBase");
+            gripperArm = hardwareMap.get(DcMotor.class,"gripper arm");
+            tilting = hardwareMap.get(Servo.class,"tilting servo");
+            gripperL = hardwareMap.get(Servo.class,"gripper1");
+            gripperR = hardwareMap.get(Servo.class,"gripper2");
 
             // reversed motors
             rightB.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -91,8 +91,9 @@ public class auto1test extends LinearOpMode {
             move(0, 0);
 
             // read the team prop (either w eocv or ml)
+                // if the camera read nothing put it in the mid (default pos), which means the default pos num will be 2
             // make sure to store the class's returnings for the tp pos in this var (1=left, 2=mid, 3=right):
-            tpPos = 0;
+            tpPos = 2;
 
             // turn to the tp pos detected by the camera
             move(0, 0);
