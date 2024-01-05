@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.openCV__autoDetect.blobDetectionTest;
 import org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -83,7 +84,7 @@ public class Auto1test extends LinearOpMode {
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         webCam = OpenCvCameraFactory.getInstance().createWebcam(webcamName, cameraMonitorViewId);
 
-        pipeline_test colorDetector = new pipeline_test(telemetry);
+        blobDetectionTest colorDetector = new blobDetectionTest(telemetry);
         webCam.setPipeline(colorDetector);
 
         while (opModeInInit()) {
@@ -151,77 +152,76 @@ public class Auto1test extends LinearOpMode {
             // done above in the init step
 
             // move forward to read the tp
-            move(0, 0);
+//            move(0, 0, 0, 0, 0);
 
             // read the team prop (either w eocv or ml)
                 // if the camera read nothing put it in the mid (default pos), which means the default pos num will be 2
             // make sure to store the class's returnings for the tp pos in this var (1=left, 2=mid, 3=right):
-            switch (pipeline_test.getPos_of_tp()) {
-                case LEFT:
-                    // code to be executed if expression == LEFT
-                    telemetry.addLine("position detected is left");
-                    tpPos = 1;
-                    break;
-                case MID:
-                    // code to be executed if expression == MID
-                    telemetry.addLine("position detected is mid");
-                    tpPos = 2;
-                    break;
-                // more cases as needed
-                case RIGHT:
-                    // code to be executed if none of the cases match
-                    telemetry.addLine("position detected is right");
-//                    tpPos = 3; -- we used else so no need for this
-                default:
-                    tpPos = 2;
-                    telemetry.addLine("we couldnt find the team prop! we'll put it on the middle");
+            if (blobDetectionTest.tp_zone == 1) {
+                // code to be executed if expression == 1 (left)
+                telemetry.addLine("team prop's position detected is left");
+                tpPos = 1;
+
+            } else if (blobDetectionTest.tp_zone == 2) {
+                // code to be executed if expression == 2 (mid)
+                telemetry.addLine("team prop's position detected is mid");
+                tpPos = 2;
+
+            } else {
+                // code to be executed if none of above matches (tp_zone == 3 (right))
+                telemetry.addLine("team prop's position detected is right");
+                tpPos = 3;
+
             }
 
 
             // turn to the tp pos detected by the camera
             if (tpPos == 1) {
                 // turn movements to face the left spike mark
-                leftSpikeMark(0, 0);
+//                leftSpikeMark(1, 0.4);
 
+                move(1, 0.4, 0.4, 0.4, 0.4);
             } else if (tpPos == 2) {
                 // turn movements to face the mid spike mark
-                midSpikeMark(0, 0);
+//                midSpikeMark(0, 0);
 
+                move(1, -0.2, -0.2, 0.2, 0.2);
             } else {
                 // turn movements to face the right spike mark
-                rightSpikeMark(0, 0);
+//                rightSpikeMark(0, 0);
 
+                move(1, -0.2, -0.2, -0.2, -0.2);
             }
 
 
             // put the purple pixel depending on the index given by the reads of the camera
-            putPurplePixel(servoPos);
+//            putPurplePixel(servoPos);
 
             // go to the back drop on the column detected by the camera
-            if (tpPos == 1) {
-                // turn movements to face the left spike mark
-                leftSpikeMark(0, 0);
-
-            } else if (tpPos == 2) {
-                // turn movements to face the mid spike mark
-                midSpikeMark(0, 0);
-
-            } else {
-                // turn movements to face the right spike mark
-                rightSpikeMark(0, 0);
-
-            }
+//            if (tpPos == 1) {
+//                // turn movements to face the left spike mark
+//                leftSpikeMark(0, 0);
+//
+//            } else if (tpPos == 2) {
+//                // turn movements to face the mid spike mark
+//                midSpikeMark(0, 0);
+//
+//            } else {
+//                // turn movements to face the right spike mark
+//                rightSpikeMark(0, 0);
+//
+//            }
 
             // move the gripper arm and use the gripper to drop the pixel
-            backDrop(0, 0, 0);
+//            backDrop(0, 0, 0);
 
             // park
-            move(0, 0);
+//            move(0, 0, 0, 0, 0);
 
         }
     }
 
-    void move(int dis, int vel) {
+    void move(int dis, double vel, double vel1, double vel2, double vel3) {
 
         leftF.setTargetPosition(dis);
         leftB.setTargetPosition(dis);
@@ -242,7 +242,7 @@ public class Auto1test extends LinearOpMode {
 
     }
 
-    void leftSpikeMark (int dis, int vel) {
+    void leftSpikeMark (int dis, double vel) {
         leftF.setTargetPosition(dis);
         leftB.setTargetPosition(dis);
         rightF.setTargetPosition(dis);
@@ -262,7 +262,7 @@ public class Auto1test extends LinearOpMode {
 
     }
 
-    void midSpikeMark (int dis, int vel) {
+    void midSpikeMark (int dis, double vel) {
         leftF.setTargetPosition(dis);
         leftB.setTargetPosition(dis);
         rightF.setTargetPosition(dis);
@@ -282,7 +282,7 @@ public class Auto1test extends LinearOpMode {
 
     }
 
-    void rightSpikeMark (int dis, int vel) {
+    void rightSpikeMark (int dis, double vel) {
         leftF.setTargetPosition(dis);
         leftB.setTargetPosition(dis);
         rightF.setTargetPosition(dis);
@@ -316,7 +316,7 @@ public class Auto1test extends LinearOpMode {
 
     }
 
-    void backDrop (int dis, int pwr, int pos) {
+    void backDrop (int dis, double pwr, int pos) {
 
         // arm tar pos to be on the back drop
         gripperArm.setTargetPosition(dis);
