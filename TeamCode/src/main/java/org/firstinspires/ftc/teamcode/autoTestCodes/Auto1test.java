@@ -89,10 +89,10 @@ public class Auto1test extends LinearOpMode {
 
         while (opModeInInit()) {
             // hardware map
-            leftF = hardwareMap.get(DcMotorEx.class, "..");
-            leftB = hardwareMap.get(DcMotorEx.class, "..");
-            rightF = hardwareMap.get(DcMotorEx.class, "..");
-            rightB = hardwareMap.get(DcMotorEx.class, "..");
+            leftF = hardwareMap.get(DcMotorEx.class, "leftF");
+            leftB = hardwareMap.get(DcMotorEx.class, "leftB");
+            rightF = hardwareMap.get(DcMotorEx.class, "rightF");
+            rightB = hardwareMap.get(DcMotorEx.class, "rightB");
 //            slideL = hardwareMap.get(DcMotor.class, "slide1");
 //            slideR = hardwareMap.get(DcMotor.class,"slide2");
 //            armBase = hardwareMap.get(DcMotor.class,"armBase");
