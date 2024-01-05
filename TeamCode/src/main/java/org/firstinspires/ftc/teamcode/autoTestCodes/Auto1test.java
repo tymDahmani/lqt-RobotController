@@ -8,8 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.openCV__autoDetect.blobDetectionTest;
-import org.firstinspires.ftc.teamcode.openCV__autoDetect.pipeline_test;
+import org.firstinspires.ftc.teamcode.eocvDetect.blobDetectionTest;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
