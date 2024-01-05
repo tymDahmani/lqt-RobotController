@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.autoTestCodes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -20,7 +21,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 // this is an example line:
 // encoderDrive(DRIVE_SPEED, 1, 1, 5.0); // S1: Forward 1 meter with 5 Sec timeout
 
-
+@Autonomous
 public class Auto1test extends LinearOpMode {
 
     OpenCvCamera webCam;
