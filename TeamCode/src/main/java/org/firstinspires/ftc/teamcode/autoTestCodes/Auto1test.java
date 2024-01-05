@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.autoTestCodes;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -20,7 +21,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 // this is an example line:
 // encoderDrive(DRIVE_SPEED, 1, 1, 5.0); // S1: Forward 1 meter with 5 Sec timeout
 
-
+@Autonomous
 public class Auto1test extends LinearOpMode {
 
     OpenCvCamera webCam;
@@ -88,13 +89,17 @@ public class Auto1test extends LinearOpMode {
 
         while (opModeInInit()) {
             // hardware map
-            slideL = hardwareMap.get(DcMotor.class, "slide1");
-            slideR = hardwareMap.get(DcMotor.class,"slide2");
+            leftF = hardwareMap.get(DcMotorEx.class, "leftF");
+            leftB = hardwareMap.get(DcMotorEx.class, "leftB");
+            rightF = hardwareMap.get(DcMotorEx.class, "rightF");
+            rightB = hardwareMap.get(DcMotorEx.class, "rightB");
+            slideL = hardwareMap.get(DcMotor.class, "slideL");
+            slideR = hardwareMap.get(DcMotor.class,"slideR");
             armBase = hardwareMap.get(DcMotor.class,"armBase");
-            gripperArm = hardwareMap.get(DcMotor.class,"gripper arm");
-            tilting = hardwareMap.get(Servo.class,"tilting servo");
-            gripperL = hardwareMap.get(Servo.class,"gripper1");
-            gripperR = hardwareMap.get(Servo.class,"gripper2");
+            gripperArm = hardwareMap.get(DcMotor.class,"gripperArm");
+            tilting = hardwareMap.get(Servo.class,"tilting");
+            gripperL = hardwareMap.get(Servo.class,"gripperL");
+            gripperR = hardwareMap.get(Servo.class,"gripperR");
 
             // reversed motors
             rightB.setDirection(DcMotorSimple.Direction.REVERSE);
