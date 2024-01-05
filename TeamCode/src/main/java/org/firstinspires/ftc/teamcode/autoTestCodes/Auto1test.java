@@ -93,38 +93,38 @@ public class Auto1test extends LinearOpMode {
             leftB = hardwareMap.get(DcMotorEx.class, "leftB");
             rightF = hardwareMap.get(DcMotorEx.class, "rightF");
             rightB = hardwareMap.get(DcMotorEx.class, "rightB");
-//            slideL = hardwareMap.get(DcMotor.class, "slide1");
-//            slideR = hardwareMap.get(DcMotor.class,"slide2");
-//            armBase = hardwareMap.get(DcMotor.class,"armBase");
-//            gripperArm = hardwareMap.get(DcMotor.class,"gripper arm");
-//            tilting = hardwareMap.get(Servo.class,"tilting servo");
-//            gripperL = hardwareMap.get(Servo.class,"gripper1");
-//            gripperR = hardwareMap.get(Servo.class,"gripper2");
+            slideL = hardwareMap.get(DcMotor.class, "slideL");
+            slideR = hardwareMap.get(DcMotor.class,"slideR");
+            armBase = hardwareMap.get(DcMotor.class,"armBase");
+            gripperArm = hardwareMap.get(DcMotor.class,"gripperArm");
+            tilting = hardwareMap.get(Servo.class,"tilting");
+            gripperL = hardwareMap.get(Servo.class,"gripperL");
+            gripperR = hardwareMap.get(Servo.class,"gripperR");
 
             // reversed motors
             rightB.setDirection(DcMotorSimple.Direction.REVERSE);
             rightF.setDirection(DcMotorSimple.Direction.REVERSE);
-//            gripperL.setDirection(Servo.Direction.REVERSE);
+            gripperL.setDirection(Servo.Direction.REVERSE);
 
             // stop and reset encoder
             leftF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             leftB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             rightF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             rightB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//            slideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//            slideR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//            armBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-//            gripperArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            slideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            slideR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            armBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            gripperArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
             // run using encoder
             leftF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             leftB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             rightF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             rightB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//            slideL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//            slideR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//            armBase.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-//            gripperArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            slideL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            slideR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            armBase.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            gripperArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
 
