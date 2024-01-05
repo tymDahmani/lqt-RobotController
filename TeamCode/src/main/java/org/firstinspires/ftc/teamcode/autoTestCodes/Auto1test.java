@@ -89,13 +89,17 @@ public class Auto1test extends LinearOpMode {
 
         while (opModeInInit()) {
             // hardware map
-            slideL = hardwareMap.get(DcMotor.class, "slide1");
-            slideR = hardwareMap.get(DcMotor.class,"slide2");
-            armBase = hardwareMap.get(DcMotor.class,"armBase");
-            gripperArm = hardwareMap.get(DcMotor.class,"gripper arm");
-            tilting = hardwareMap.get(Servo.class,"tilting servo");
-            gripperL = hardwareMap.get(Servo.class,"gripper1");
-            gripperR = hardwareMap.get(Servo.class,"gripper2");
+            leftF = hardwareMap.get(DcMotorEx.class, "..");
+            leftB = hardwareMap.get(DcMotorEx.class, "..");
+            rightF = hardwareMap.get(DcMotorEx.class, "..");
+            rightB = hardwareMap.get(DcMotorEx.class, "..");
+//            slideL = hardwareMap.get(DcMotor.class, "slide1");
+//            slideR = hardwareMap.get(DcMotor.class,"slide2");
+//            armBase = hardwareMap.get(DcMotor.class,"armBase");
+//            gripperArm = hardwareMap.get(DcMotor.class,"gripper arm");
+//            tilting = hardwareMap.get(Servo.class,"tilting servo");
+//            gripperL = hardwareMap.get(Servo.class,"gripper1");
+//            gripperR = hardwareMap.get(Servo.class,"gripper2");
 
             // reversed motors
             rightB.setDirection(DcMotorSimple.Direction.REVERSE);
