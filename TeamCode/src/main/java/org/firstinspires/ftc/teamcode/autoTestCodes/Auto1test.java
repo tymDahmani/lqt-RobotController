@@ -133,7 +133,7 @@ public class Auto1test extends LinearOpMode {
                 @Override
                 public void onOpened() {
                     // Usually this is where you'll want to start streaming from the camera (see section 4) this is in the easy opencv docs
-                    webCam.startStreaming(1920, 1080, OpenCvCameraRotation.UPRIGHT);
+                    webCam.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
 
 
                 }
@@ -255,9 +255,9 @@ public class Auto1test extends LinearOpMode {
         rightB.setTargetPosition(dis);
 
         leftF.setVelocity(vel);
-        leftB.setVelocity(vel);
-        rightF.setVelocity(vel);
-        rightB.setVelocity(vel);
+        leftB.setVelocity(vel1);
+        rightF.setVelocity(vel2);
+        rightB.setVelocity(vel3);
 
         while (leftF.isBusy()) {
             idle();
