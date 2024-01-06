@@ -128,28 +128,29 @@ public class Auto1test extends LinearOpMode {
             gripperArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
+            webCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+            {
+                @Override
+                public void onOpened() {
+                    // Usually this is where you'll want to start streaming from the camera (see section 4) this is in the easy opencv docs
+                    webCam.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
+
+
+                }
+                @Override
+                public void onError(int errorCode) {
+                    /*
+                     * This will be called if the camera could not be opened
+                     */
+                    telemetry.addLine("the camera is dead! help!");
+                }
+            });
+
+
 
 
 
         }
-
-        webCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
-        {
-            @Override
-            public void onOpened() {
-                // Usually this is where you'll want to start streaming from the camera (see section 4) this is in the easy opencv docs
-                webCam.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
-
-
-            }
-            @Override
-            public void onError(int errorCode) {
-                /*
-                 * This will be called if the camera could not be opened
-                 */
-                telemetry.addLine("the camera is dead! help!");
-            }
-        });
 
 
         waitForStart();
