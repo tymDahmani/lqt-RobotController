@@ -198,6 +198,8 @@ public class Auto1test extends LinearOpMode {
 
             }
 
+            webCam.stopStreaming();
+
 
             // turn to the tp pos detected by the camera
             if (tpPos == 1) {
