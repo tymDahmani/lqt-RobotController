@@ -65,7 +65,7 @@ public class Auto1test extends LinearOpMode {
     int tpPos = 2;
 
     // vars for the driveEncoder method - which calculates the ticks needed for the given distance, time and which motors
-    static final double tpr = 3000; // ticks per revolution
+    static final double tpr = 1000; // ticks per revolution
     
     static final double MOTOR_GEAR_REDUCTION = 1.0; // sth about the motor gears and ratios (This is < 1.0 if geared UP)
     static final double WHEEL_DIAMETER_CM = 7.0; // For figuring circumference
