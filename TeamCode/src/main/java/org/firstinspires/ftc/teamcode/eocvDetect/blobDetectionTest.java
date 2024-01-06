@@ -18,7 +18,13 @@ public class blobDetectionTest extends OpenCvPipeline {
 
     List<Integer> TP_COLOR = Arrays.asList(255, 0, 0); //(red, green, blue)
 
-    public static int tp_zone = 1;
+    public enum TP_ZONE {
+        LEFT,
+        MID,
+        RIGHT
+    }
+
+    public static TP_ZONE tp_zone;
 
     int toggleShow = 1;
 
@@ -75,14 +81,14 @@ public class blobDetectionTest extends OpenCvPipeline {
 
         if (max_distance == distance1){
             telemetry.addLine("left");
-            tp_zone = 1;
+            tp_zone = TP_ZONE.LEFT;
 
         }else if (max_distance == distance2){
             telemetry.addLine("mid");
-            tp_zone = 2;
+            tp_zone = TP_ZONE.MID;
         } else {
             telemetry.addLine("right");
-            tp_zone = 3;
+            tp_zone = TP_ZONE.RIGHT;
         }
 
         // Allowing for the showing of the averages on the stream
@@ -115,10 +121,6 @@ public class blobDetectionTest extends OpenCvPipeline {
         }
     }
 
-    public int get_tp_zone(){
-        return tp_zone;
-    }
-
     public double getMaxDistance(){
         return max_distance;
     }
@@ -127,7 +129,7 @@ public class blobDetectionTest extends OpenCvPipeline {
         toggleShow = toggleShow * -1;
     }
 
-    public static int getTp_zone() {
+    public static TP_ZONE getTp_zone() {
         return tp_zone;
     }
 }

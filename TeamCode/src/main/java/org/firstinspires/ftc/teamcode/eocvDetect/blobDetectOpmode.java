@@ -45,15 +45,19 @@ public class blobDetectOpmode extends LinearOpMode {
 
         waitForStart();
 
-        if (blobDetectionTest.tp_zone == 1) {
-            // code to be executed if expression == LEFT (left)
-            telemetry.addLine("team prop's position detected is left");
-        } else if (blobDetectionTest.tp_zone == 2) {
-            // code to be executed if expression == 2 (mid)
-            telemetry.addLine("team prop's position detected is mid");
-        } else {
-                // code to be executed if none of above matches (tp_zone == 3 (right))
-                telemetry.addLine("team prop's position detected is right");
+        switch (blobDetectionTest.tp_zone) {
+            case LEFT:
+                // code to be executed if expression == LEFT
+                telemetry.addLine("position detected is left");
+                break;
+            case MID:
+                // code to be executed if expression == MID
+                telemetry.addLine("position detected is mid");
+                break;
+            // more cases as needed
+            case RIGHT:
+                // code to be executed if none of the cases match
+                telemetry.addLine("position detected is right");
         }
 
         webCam.stopStreaming();
