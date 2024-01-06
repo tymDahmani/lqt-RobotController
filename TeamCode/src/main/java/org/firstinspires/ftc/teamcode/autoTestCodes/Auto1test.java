@@ -146,6 +146,24 @@ public class Auto1test extends LinearOpMode {
                 }
             });
 
+        // make sure to store the class's returnings for the tp pos in this var (1=left, 2=mid, 3=right):
+        if (blobDetectionTest.tp_zone == 1) {
+            // code to be executed if expression == 1 (left)
+            telemetry.addLine("team prop's position detected is left");
+            tpPos = 1;
+
+        } else if (blobDetectionTest.tp_zone == 2) {
+            // code to be executed if expression == 2 (mid)
+            telemetry.addLine("team prop's position detected is mid");
+            tpPos = 2;
+
+        } else {
+            // code to be executed if none of above matches (tp_zone == 3 (right))
+            telemetry.addLine("team prop's position detected is right");
+            tpPos = 3;
+
+        }
+
 
 
 
@@ -164,23 +182,6 @@ public class Auto1test extends LinearOpMode {
 
             // read the team prop (either w eocv or ml)
                 // if the camera read nothing put it in the mid (default pos), which means the default pos num will be 2
-            // make sure to store the class's returnings for the tp pos in this var (1=left, 2=mid, 3=right):
-            if (blobDetectionTest.tp_zone == 1) {
-                // code to be executed if expression == 1 (left)
-                telemetry.addLine("team prop's position detected is left");
-                tpPos = 1;
-
-            } else if (blobDetectionTest.tp_zone == 2) {
-                // code to be executed if expression == 2 (mid)
-                telemetry.addLine("team prop's position detected is mid");
-                tpPos = 2;
-
-            } else {
-                // code to be executed if none of above matches (tp_zone == 3 (right))
-                telemetry.addLine("team prop's position detected is right");
-                tpPos = 3;
-
-            }
 
             webCam.stopStreaming();
 
