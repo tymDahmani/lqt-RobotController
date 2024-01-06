@@ -93,8 +93,8 @@ public class Auto1test extends LinearOpMode {
             leftB = hardwareMap.get(DcMotorEx.class, "leftB");
             rightF = hardwareMap.get(DcMotorEx.class, "rightF");
             rightB = hardwareMap.get(DcMotorEx.class, "rightB");
-            slideL = hardwareMap.get(DcMotor.class, "slideL");
-            slideR = hardwareMap.get(DcMotor.class,"slideR");
+            slideL = hardwareMap.get(DcMotor.class, "SlideL");
+            slideR = hardwareMap.get(DcMotor.class,"SlideR");
             armBase = hardwareMap.get(DcMotor.class,"armBase");
             gripperArm = hardwareMap.get(DcMotor.class,"gripperArm");
             tilting = hardwareMap.get(Servo.class,"tilting");
