@@ -88,7 +88,7 @@ public class Auto1test extends LinearOpMode {
         blobDetectionTest colorDetector = new blobDetectionTest(telemetry);
         webCam.setPipeline(colorDetector);
 
-        while (opModeInInit()) {
+
             // hardware map
             leftF = hardwareMap.get(DcMotorEx.class, "leftF");
             leftB = hardwareMap.get(DcMotorEx.class, "leftB");
@@ -150,7 +150,7 @@ public class Auto1test extends LinearOpMode {
 
 
 
-        }
+
 
 
         waitForStart();
