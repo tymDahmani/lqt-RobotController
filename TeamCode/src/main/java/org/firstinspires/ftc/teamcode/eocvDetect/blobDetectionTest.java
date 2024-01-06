@@ -74,14 +74,14 @@ public class blobDetectionTest extends OpenCvPipeline {
         max_distance = Math.min(distance3, Math.min(distance1, distance2));
 
         if (max_distance == distance1){
-
+            telemetry.addLine("left");
             tp_zone = 1;
 
         }else if (max_distance == distance2){
-            //telemetry.addData("Zone 2 Has Element", distance2);
+            telemetry.addLine("mid");
             tp_zone = 2;
-        }else{
-            //telemetry.addData("Zone 2 Has Element", distance3);
+        } else {
+            telemetry.addLine("right");
             tp_zone = 3;
         }
 
@@ -91,8 +91,8 @@ public class blobDetectionTest extends OpenCvPipeline {
         }else{
             return original;
         }
-        
-        
+
+
     }
 
     public double color_distance(Scalar color1, List color2){
@@ -130,5 +130,4 @@ public class blobDetectionTest extends OpenCvPipeline {
     public static int getTp_zone() {
         return tp_zone;
     }
-
 }

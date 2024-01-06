@@ -147,12 +147,12 @@ public class Auto1test extends LinearOpMode {
             });
 
         // make sure to store the class's returnings for the tp pos in this var (1=left, 2=mid, 3=right):
-        if (blobDetectionTest.tp_zone == 1) {
+        if (blobDetectionTest.getTp_zone() == 1) {
             // code to be executed if expression == 1 (left)
             telemetry.addLine("team prop's position detected is left");
             tpPos = 1;
 
-        } else if (blobDetectionTest.tp_zone == 2) {
+        } else if (blobDetectionTest.getTp_zone() == 2) {
             // code to be executed if expression == 2 (mid)
             telemetry.addLine("team prop's position detected is mid");
             tpPos = 2;
