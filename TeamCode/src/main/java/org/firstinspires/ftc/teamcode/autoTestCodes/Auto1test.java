@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.autoTestCodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -44,7 +45,7 @@ public class Auto1test extends LinearOpMode {
     DcMotor gripperArm;
 
     // gripper tilting servo
-    Servo tilting;
+    CRServo tilting;
 
     // grippers
     Servo gripperL;
@@ -97,7 +98,7 @@ public class Auto1test extends LinearOpMode {
             slideR = hardwareMap.get(DcMotor.class,"SlideR");
             armBase = hardwareMap.get(DcMotor.class,"armBase");
             gripperArm = hardwareMap.get(DcMotor.class,"gripperArm");
-            tilting = hardwareMap.get(Servo.class,"tilting");
+            tilting = hardwareMap.get(CRServo.class,"tilting");
             gripperL = hardwareMap.get(Servo.class,"gripperL");
             gripperR = hardwareMap.get(Servo.class,"gripperR");
 
@@ -127,24 +128,6 @@ public class Auto1test extends LinearOpMode {
             gripperArm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
-
-            // eocv stuff
-            webCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
-                @Override
-                public void onOpened() {
-                    // Usually this is where you'll want to start streaming from the camera (see section 4) this is in the easy opencv docs
-                    webCam.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
-
-
-                }
-                @Override
-                public void onError(int errorCode) {
-                    /*
-                     * This will be called if the camera could not be opened
-                     */
-                    telemetry.addLine("the camera is dead! help!");
-                }
-            });
 
 
 
