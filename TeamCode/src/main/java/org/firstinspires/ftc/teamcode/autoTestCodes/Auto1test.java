@@ -206,17 +206,17 @@ public class Auto1test extends LinearOpMode {
                 // turn movements to face the left spike mark
 //                leftSpikeMark(1, 0.4);
 
-                move(1, 0.4, 0.4, 0.4, 0.4);
+                move(2000, 0.2, 0.2, 0.2, 0.2);
             } else if (tpPos == 2) {
                 // turn movements to face the mid spike mark
 //                midSpikeMark(0, 0);
 
-                move(1, -0.2, -0.2, 0.2, 0.2);
+                move(2000, -0.2, -0.2, 0.2, 0.2);
             } else {
                 // turn movements to face the right spike mark
 //                rightSpikeMark(0, 0);
 
-                move(1, -0.2, -0.2, -0.2, -0.2);
+                move(2000, -0.2, -0.2, -0.2, -0.2);
             }
 
 
