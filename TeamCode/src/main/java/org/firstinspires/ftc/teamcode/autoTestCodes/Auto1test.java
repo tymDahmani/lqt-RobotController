@@ -29,10 +29,10 @@ public class Auto1test extends LinearOpMode {
 
         // robot actuators
     // drive train
-    DcMotorEx leftF;
-    DcMotorEx leftB;
-    DcMotorEx rightF;
-    DcMotorEx rightB;
+    DcMotorEx leftFront;
+    DcMotorEx leftBack;
+    DcMotorEx rightFront;
+    DcMotorEx rightBack;
 
     // slides
     DcMotor slideL;
@@ -90,10 +90,10 @@ public class Auto1test extends LinearOpMode {
 
 
             // hardware map
-            leftF = hardwareMap.get(DcMotorEx.class, "leftF");
-            leftB = hardwareMap.get(DcMotorEx.class, "leftB");
-            rightF = hardwareMap.get(DcMotorEx.class, "rightF");
-            rightB = hardwareMap.get(DcMotorEx.class, "rightB");
+            leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+            leftBack = hardwareMap.get(DcMotorEx.class, "leftBack");
+            rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+            rightBack = hardwareMap.get(DcMotorEx.class, "rightBack");
             slideL = hardwareMap.get(DcMotor.class, "SlideL");
             slideR = hardwareMap.get(DcMotor.class,"SlideR");
             armBase = hardwareMap.get(DcMotor.class,"armBase");
@@ -103,25 +103,25 @@ public class Auto1test extends LinearOpMode {
             gripperR = hardwareMap.get(Servo.class,"gripperR");
 
             // reversed motors
-            rightB.setDirection(DcMotorSimple.Direction.REVERSE);
-            rightF.setDirection(DcMotorSimple.Direction.REVERSE);
+            rightBack.setDirection(DcMotorSimple.Direction.REVERSE);
+            rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
             gripperL.setDirection(Servo.Direction.REVERSE);
 
             // stop and reset encoder
-            leftF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            leftB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            rightF.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-            rightB.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            leftBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            rightBack.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             slideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             slideR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             armBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             gripperArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
             // run using encoder
-            leftF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            leftB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            rightF.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            rightB.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightBack.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             slideL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             slideR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             armBase.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -236,17 +236,17 @@ public class Auto1test extends LinearOpMode {
 
     void move(int dis, double vel, double vel1, double vel2, double vel3) {
 
-        leftF.setTargetPosition(dis);
-        leftB.setTargetPosition(dis);
-        rightF.setTargetPosition(dis);
-        rightB.setTargetPosition(dis);
+        leftFront.setTargetPosition(dis);
+        leftBack.setTargetPosition(dis);
+        rightFront.setTargetPosition(dis);
+        rightBack.setTargetPosition(dis);
 
-        leftF.setVelocity(vel);
-        leftB.setVelocity(vel1);
-        rightF.setVelocity(vel2);
-        rightB.setVelocity(vel3);
+        leftFront.setVelocity(vel);
+        leftBack.setVelocity(vel1);
+        rightFront.setVelocity(vel2);
+        rightBack.setVelocity(vel3);
 
-        while (leftF.isBusy()) {
+        while (leftFront.isBusy()) {
             idle();
         }
 
@@ -256,17 +256,17 @@ public class Auto1test extends LinearOpMode {
     }
 
     void leftSpikeMark (int dis, double vel) {
-        leftF.setTargetPosition(dis);
-        leftB.setTargetPosition(dis);
-        rightF.setTargetPosition(dis);
-        rightB.setTargetPosition(dis);
+        leftFront.setTargetPosition(dis);
+        leftBack.setTargetPosition(dis);
+        rightFront.setTargetPosition(dis);
+        rightBack.setTargetPosition(dis);
 
-        leftF.setVelocity(vel);
-        leftB.setVelocity(vel);
-        rightF.setVelocity(vel);
-        rightB.setVelocity(vel);
+        leftFront.setVelocity(vel);
+        leftBack.setVelocity(vel);
+        rightFront.setVelocity(vel);
+        rightBack.setVelocity(vel);
 
-        while (leftF.isBusy()) {
+        while (leftFront.isBusy()) {
             idle();
         }
 
@@ -276,17 +276,17 @@ public class Auto1test extends LinearOpMode {
     }
 
     void midSpikeMark (int dis, double vel) {
-        leftF.setTargetPosition(dis);
-        leftB.setTargetPosition(dis);
-        rightF.setTargetPosition(dis);
-        rightB.setTargetPosition(dis);
+        leftFront.setTargetPosition(dis);
+        leftBack.setTargetPosition(dis);
+        rightFront.setTargetPosition(dis);
+        rightBack.setTargetPosition(dis);
 
-        leftF.setVelocity(vel);
-        leftB.setVelocity(vel);
-        rightF.setVelocity(vel);
-        rightB.setVelocity(vel);
+        leftFront.setVelocity(vel);
+        leftBack.setVelocity(vel);
+        rightFront.setVelocity(vel);
+        rightBack.setVelocity(vel);
 
-        while (leftF.isBusy()) {
+        while (leftFront.isBusy()) {
             idle();
         }
 
@@ -296,17 +296,17 @@ public class Auto1test extends LinearOpMode {
     }
 
     void rightSpikeMark (int dis, double vel) {
-        leftF.setTargetPosition(dis);
-        leftB.setTargetPosition(dis);
-        rightF.setTargetPosition(dis);
-        rightB.setTargetPosition(dis);
+        leftFront.setTargetPosition(dis);
+        leftBack.setTargetPosition(dis);
+        rightFront.setTargetPosition(dis);
+        rightBack.setTargetPosition(dis);
 
-        leftF.setVelocity(vel);
-        leftB.setVelocity(vel);
-        rightF.setVelocity(vel);
-        rightB.setVelocity(vel);
+        leftFront.setVelocity(vel);
+        leftBack.setVelocity(vel);
+        rightFront.setVelocity(vel);
+        rightBack.setVelocity(vel);
 
-        while (leftF.isBusy()) {
+        while (leftFront.isBusy()) {
             idle();
         }
 
@@ -354,36 +354,36 @@ public class Auto1test extends LinearOpMode {
 
     public void encoderDrive(double speed, double leftMeters, double rightMeters, double timeoutS) {
 
-        int leftFTar;
-        int leftBTar;
-        int rightFTar;
-        int rightBTar;
+        int leftFrontTar;
+        int leftBackTar;
+        int rightFrontTar;
+        int rightBackTar;
 
         // Ensure that the opmode is still active
         if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
-            leftFTar = leftF.getCurrentPosition() + (int) (leftMeters * cpMeter);
-            leftBTar = leftB.getCurrentPosition() + (int) (leftMeters * cpMeter);
-            rightFTar = leftF.getCurrentPosition() + (int) (rightMeters * cpMeter);
-            rightBTar = leftB.getCurrentPosition() + (int) (rightMeters * cpMeter);
-            leftF.setTargetPosition(leftFTar);
-            leftB.setTargetPosition(leftBTar);
-            rightF.setTargetPosition(rightFTar);
-            rightB.setTargetPosition(rightBTar);
+            leftFrontTar = leftFront.getCurrentPosition() + (int) (leftMeters * cpMeter);
+            leftBackTar = leftBack.getCurrentPosition() + (int) (leftMeters * cpMeter);
+            rightFrontTar = leftFront.getCurrentPosition() + (int) (rightMeters * cpMeter);
+            rightBackTar = leftBack.getCurrentPosition() + (int) (rightMeters * cpMeter);
+            leftFront.setTargetPosition(leftFrontTar);
+            leftBack.setTargetPosition(leftBackTar);
+            rightFront.setTargetPosition(rightFrontTar);
+            rightBack.setTargetPosition(rightBackTar);
 
             // Turn On RUN_TO_POSITION
-            leftF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            leftB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightF.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightB.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightBack.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // reset the timeout time and start motion.
             runtime.reset();
-            leftF.setPower(Math.abs(speed));
-            leftB.setPower(Math.abs(speed));
-            rightF.setPower(Math.abs(speed));
-            rightB.setPower(Math.abs(speed));
+            leftFront.setPower(Math.abs(speed));
+            leftBack.setPower(Math.abs(speed));
+            rightFront.setPower(Math.abs(speed));
+            rightBack.setPower(Math.abs(speed));
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
             // its target position, the motion will stop. This is "safer" in the event that the robot will
@@ -392,10 +392,10 @@ public class Auto1test extends LinearOpMode {
             // onto the next step, use (isBusy() || isBusy()) in the loop test.
             while (opModeIsActive() &&
                     (runtime.seconds() < timeoutS) &&
-                    (leftF.isBusy() && leftB.isBusy())) {
+                    (leftFront.isBusy() && leftBack.isBusy())) {
                 // Display it for the driver.
-                telemetry.addData("Ticks needed to be ticked", "Running to %7d :%7d", leftFTar, rightFTar);
-                telemetry.addData("ticks ticked", "Running at %7d :%7d", leftF.getCurrentPosition(), rightF.getCurrentPosition());
+                telemetry.addData("Ticks needed to be ticked", "Running to %7d :%7d", leftFrontTar, rightFrontTar);
+                telemetry.addData("ticks ticked", "Running at %7d :%7d", leftFront.getCurrentPosition(), rightFront.getCurrentPosition());
                 telemetry.update();
             }
         }
