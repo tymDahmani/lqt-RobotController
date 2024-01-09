@@ -18,14 +18,8 @@ public class blobDetectionTest extends OpenCvPipeline {
 
     List<Integer> TP_COLOR = Arrays.asList(255, 0, 0); //(red, green, blue)
 
-    public enum TP_ZONE {
-        LEFT,
-        MID,
-        RIGHT
-    }
 
-    public static TP_ZONE tp_zone;
-
+    public static int tp_zone = 2;
     int toggleShow = 1;
 
     Mat original;
@@ -81,14 +75,14 @@ public class blobDetectionTest extends OpenCvPipeline {
 
         if (max_distance == distance1){
             telemetry.addLine("left");
-            tp_zone = TP_ZONE.LEFT;
+            tp_zone = 1;
 
         }else if (max_distance == distance2){
             telemetry.addLine("mid");
-            tp_zone = TP_ZONE.MID;
+            tp_zone = 2;
         } else {
             telemetry.addLine("right");
-            tp_zone = TP_ZONE.RIGHT;
+            tp_zone = 3;
         }
 
         // Allowing for the showing of the averages on the stream
@@ -129,7 +123,7 @@ public class blobDetectionTest extends OpenCvPipeline {
         toggleShow = toggleShow * -1;
     }
 
-    public static TP_ZONE getTp_zone() {
+    public static int getTp_zone() {
         return tp_zone;
     }
 }
