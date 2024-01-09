@@ -147,7 +147,7 @@ public class Auto1test extends LinearOpMode {
             });
 
         // make sure to store the class's returnings for the tp pos in this var (1=left, 2=mid, 3=right):
-        switch (blobDetectionTest.tp_zone) {
+        switch (blobDetectionTest.getTp_zone()) {
             case LEFT:
                 // code to be executed if expression == LEFT
                 telemetry.addLine("position detected is left");
