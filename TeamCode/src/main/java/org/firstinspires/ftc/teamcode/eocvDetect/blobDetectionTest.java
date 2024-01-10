@@ -36,7 +36,7 @@ public class blobDetectionTest extends OpenCvPipeline {
     double distance2 = 1;
     double distance3 = 0;
 
-    double max_distance = 0;
+    static double max_distance = 0;
 
     public blobDetectionTest(Telemetry telemetry) {
         this.telemetry = telemetry;
@@ -84,6 +84,7 @@ public class blobDetectionTest extends OpenCvPipeline {
             telemetry.addLine("right");
             tp_zone = 3;
         }
+        telemetry.update();
 
         // Allowing for the showing of the averages on the stream
         if (toggleShow == 1){
@@ -115,7 +116,7 @@ public class blobDetectionTest extends OpenCvPipeline {
         }
     }
 
-    public double getMaxDistance(){
+    public static double getMaxDistance(){
         return max_distance;
     }
 
