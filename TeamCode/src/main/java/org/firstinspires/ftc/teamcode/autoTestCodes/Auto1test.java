@@ -63,7 +63,7 @@ public class Auto1test extends LinearOpMode {
 
 
     // pixel pos (left, mid, or right - 1, 2 ,3)
-    int tpPos = 2;
+    int tpPos = blobDetectionTest.tp_zone;
 
     // vars for the driveEncoder method - which calculates the ticks needed for the given distance, time and which motors
     static final double tpr = 1000; // ticks per revolution
