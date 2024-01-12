@@ -75,16 +75,18 @@ public class blobDetectionTest extends OpenCvPipeline {
 
         if (max_distance == distance1){
             telemetry.addLine("left");
+            telemetry.update();
             tp_zone = 1;
 
         }else if (max_distance == distance2){
             telemetry.addLine("mid");
+            telemetry.update();
             tp_zone = 2;
         } else {
             telemetry.addLine("right");
+            telemetry.update();
             tp_zone = 3;
         }
-        telemetry.update();
 
         // Allowing for the showing of the averages on the stream
         if (toggleShow == 1){
