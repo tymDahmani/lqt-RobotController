@@ -66,11 +66,11 @@ public class Auto1test extends LinearOpMode {
     int tpPos = blobDetectionTest.tp_zone;
 
     // vars for the driveEncoder method - which calculates the ticks needed for the given distance, time and which motors
-    static final double tpr = 1000; // ticks per revolution
+    static final double tpr = 1000; // ticks per revolution - use the tpr for the motor as none-geared motor
     
     static final double MOTOR_GEAR_REDUCTION = 1.0; // sth about the motor gears and ratios (This is < 1.0 if geared UP)
     static final double WHEEL_DIAMETER_CM = 7.0; // For figuring circumference
-    static final double cpMeter = (tpr * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415); // cmp = counts per meter
+    static final double cpMeter = (tpr * MOTOR_GEAR_REDUCTION) / (WHEEL_DIAMETER_CM * 3.1415); // cpm = counts per meter
     static final double DRIVE_SPEED = 0.6;
     static final double TURN_SPEED = 0.5;
 

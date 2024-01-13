@@ -25,6 +25,8 @@ public class hdMotor1test extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
+        tickToDist1 calculator = new tickToDist1();
+
         SlideL = hardwareMap.get(DcMotorEx.class, "SlideL");
 
         SlideL.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -81,24 +83,30 @@ public class hdMotor1test extends LinearOpMode {
 
 
             if (tp_dudu == 1) {
-                SlideL.setTargetPosition(500);
+                int ticks1 = calculator.ticksCalculator(1400, 30, 100);
+                telemetry.addData("ticks count calculated:", ticks1);
+                telemetry.update();
+
                 SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 SlideL.setPower(0.2);
-                telemetry.addLine("Left Zone we're moving 500 ticks");
+                telemetry.addLine("we will move for 100 cm");
+                telemetry.addData("zone: ", tp_dudu);
                 telemetry.update();
 
             } else if (tp_dudu == 2) {
-                SlideL.setTargetPosition(2000);
+                int ticks1 = calculator.ticksCalculator(1400, 30, 50);
                 SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 SlideL.setPower(0.2);
-                telemetry.addLine("Mid Zone we're moving 2000 ticks ");
+                telemetry.addLine("we will move for 50 cm");
+                telemetry.addData("zone: ", tp_dudu);
                 telemetry.update();
 
             } else {
-                SlideL.setTargetPosition(5000);
+                int ticks1 = calculator.ticksCalculator(1400, 30, 200);
                 SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 SlideL.setPower(0.2);
-                telemetry.addLine("Right Zone Achtung! we will move 5000 ticks");
+                telemetry.addLine("we will move for 200 cm");
+                telemetry.addData("zone: ", tp_dudu);
                 telemetry.update();
 
             }
