@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.autoTestCodes;
 
-public class tickToDist1 {
+public class tickToDest1 {
 
     /* basically this method will take the motor tpr (ticks per revolution) and the circumference of the wheel,
     * with these two we can calculate how many ticks it takes to travel cm,
@@ -10,10 +10,10 @@ public class tickToDist1 {
 
     public int ticksCalculator(int Motor_tpr, double circumference, int distance) throws InterruptedException {
 
-        Motor_tpr = 0; // with gears
-        circumference = 0;
+//        Motor_tpr = 0; // with gears
+//        circumference = 0;
         double ticksPerCM = Motor_tpr / circumference;
-        distance = 100; // in cm
+//        distance = 100; // in cm
         int TickToDest = (int) (distance * ticksPerCM);
 
         return TickToDest;

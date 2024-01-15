@@ -25,7 +25,7 @@ public class hdMotor1test extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        tickToDist1 calculator = new tickToDist1();
+//        tickToDest1 calculator = new tickToDest1();
 
         SlideL = hardwareMap.get(DcMotorEx.class, "SlideL");
 
@@ -76,6 +76,9 @@ public class hdMotor1test extends LinearOpMode {
 
         //       }
 
+
+
+
         waitForStart();
 
 
@@ -83,8 +86,19 @@ public class hdMotor1test extends LinearOpMode {
 
 
             if (tp_dudu == 1) {
-                int ticks1 = calculator.ticksCalculator(1400, 30, 100);
-                telemetry.addData("ticks count calculated:", ticks1);
+                SlideL.setTargetPosition(ticksCalc(50));
+                telemetry.addData("ticks count calculated:", ticksCalc(50));
+                telemetry.update();
+
+                SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                SlideL.setPower(0.2);
+                telemetry.addLine("we will move for 50 cm");
+                telemetry.addData("zone: ", tp_dudu);
+                telemetry.update();
+
+            } else if (tp_dudu == 2) {
+                SlideL.setTargetPosition(ticksCalc(100));
+                telemetry.addData("ticks count calculated:", ticksCalc(100));
                 telemetry.update();
 
                 SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -93,16 +107,11 @@ public class hdMotor1test extends LinearOpMode {
                 telemetry.addData("zone: ", tp_dudu);
                 telemetry.update();
 
-            } else if (tp_dudu == 2) {
-                int ticks1 = calculator.ticksCalculator(1400, 30, 50);
-                SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                SlideL.setPower(0.2);
-                telemetry.addLine("we will move for 50 cm");
-                telemetry.addData("zone: ", tp_dudu);
+            } else {
+                SlideL.setTargetPosition(ticksCalc(200));
+                telemetry.addData("ticks count calculated:", ticksCalc(200));
                 telemetry.update();
 
-            } else {
-                int ticks1 = calculator.ticksCalculator(1400, 30, 200);
                 SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 SlideL.setPower(0.2);
                 telemetry.addLine("we will move for 200 cm");
@@ -116,6 +125,16 @@ public class hdMotor1test extends LinearOpMode {
         webCam.stopStreaming();
 
 
+
+    }
+
+    public int ticksCalc(int distance) {
+
+        int Motor_tpr = 560; // with gears (1:20)
+        double circumference = 23.5619449;
+        double ticksPerCM = Motor_tpr / circumference;
+        int TickToDest = (int) (distance * ticksPerCM);
+        return TickToDest;
 
     }
 
