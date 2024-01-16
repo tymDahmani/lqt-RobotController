@@ -119,6 +119,14 @@ public class hdMotor1test extends LinearOpMode {
 
             }
 
+            if (SlideL.isBusy()){
+                telemetry.addData("motor is busy? ", "ja");
+
+            } else {
+                telemetry.addData("motor is busy? ", "nein");
+            }
+
+
         }
 
         webCam.stopStreaming();
