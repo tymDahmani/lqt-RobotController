@@ -32,6 +32,8 @@ public class hdMotor1test extends LinearOpMode {
         SlideL.setDirection(DcMotorSimple.Direction.REVERSE);
         SlideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
+        SlideL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         // camera init
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webCam1");
@@ -90,7 +92,6 @@ public class hdMotor1test extends LinearOpMode {
                 telemetry.addData("ticks count calculated:", ticksCalc(50));
                 telemetry.update();
 
-                SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 SlideL.setPower(0.2);
                 telemetry.addLine("we will move for 50 cm");
                 telemetry.addData("zone: ", tp_dudu);
@@ -101,7 +102,6 @@ public class hdMotor1test extends LinearOpMode {
                 telemetry.addData("ticks count calculated:", ticksCalc(100));
                 telemetry.update();
 
-                SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 SlideL.setPower(0.2);
                 telemetry.addLine("we will move for 100 cm");
                 telemetry.addData("zone: ", tp_dudu);
@@ -112,7 +112,6 @@ public class hdMotor1test extends LinearOpMode {
                 telemetry.addData("ticks count calculated:", ticksCalc(200));
                 telemetry.update();
 
-                SlideL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
                 SlideL.setPower(0.2);
                 telemetry.addLine("we will move for 200 cm");
                 telemetry.addData("zone: ", tp_dudu);
