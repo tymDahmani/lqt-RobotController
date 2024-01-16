@@ -53,9 +53,9 @@ public class blobDetectionTest extends OpenCvPipeline {
 
         //Defining Zones
         //Rect(top left x, top left y, width, height)
-        zone1 = input.submat(new Rect(0, 161, 190, 169));
-        zone2 = input.submat(new Rect(441, 175, 144, 144));
-        zone3 = input.submat(new Rect(784, 161, 13, 141));
+        zone1 = input.submat(new Rect(270, 90, 190, 170));
+        zone2 = input.submat(new Rect(520, 90, 170, 170));
+        zone3 = input.submat(new Rect(870, 90, 170, 170));
 
         //Averaging the colors in the zones
         avgColor1 = Core.mean(zone1);
