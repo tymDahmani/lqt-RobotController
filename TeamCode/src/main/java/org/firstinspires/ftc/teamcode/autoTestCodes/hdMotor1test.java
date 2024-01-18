@@ -89,42 +89,55 @@ public class hdMotor1test extends LinearOpMode {
 
             if (tp_dudu == 1) {
                 SlideL.setTargetPosition(ticksCalc(50));
-                telemetry.addData("ticks count calculated:", ticksCalc(50));
-                telemetry.update();
 
                 SlideL.setPower(0.2);
+
+                telemetry.addData("ticks count calculated:", ticksCalc(50));
                 telemetry.addLine("we will move for 50 cm");
                 telemetry.addData("zone: ", tp_dudu);
+                if (SlideL.isBusy()){
+                    telemetry.addData("motor is busy? ", "ja");
+
+                } else {
+                    telemetry.addData("motor is busy? ", "nein");
+                }
                 telemetry.update();
 
             } else if (tp_dudu == 2) {
                 SlideL.setTargetPosition(ticksCalc(100));
-                telemetry.addData("ticks count calculated:", ticksCalc(100));
-                telemetry.update();
 
                 SlideL.setPower(0.2);
+
+                telemetry.addData("ticks count calculated:", ticksCalc(100));
                 telemetry.addLine("we will move for 100 cm");
                 telemetry.addData("zone: ", tp_dudu);
+                if (SlideL.isBusy()){
+                    telemetry.addData("motor is busy? ", "ja");
+
+                } else {
+                    telemetry.addData("motor is busy? ", "nein");
+                }
                 telemetry.update();
 
             } else {
                 SlideL.setTargetPosition(ticksCalc(200));
-                telemetry.addData("ticks count calculated:", ticksCalc(200));
-                telemetry.update();
 
                 SlideL.setPower(0.2);
+
+                telemetry.addData("ticks count calculated:", ticksCalc(200));
                 telemetry.addLine("we will move for 200 cm");
                 telemetry.addData("zone: ", tp_dudu);
+                if (SlideL.isBusy()){
+                    telemetry.addData("motor is busy? ", "ja");
+
+                } else {
+                    telemetry.addData("motor is busy? ", "nein");
+                }
                 telemetry.update();
 
             }
 
-            if (SlideL.isBusy()){
-                telemetry.addData("motor is busy? ", "ja");
 
-            } else {
-                telemetry.addData("motor is busy? ", "nein");
-            }
 
 
         }
