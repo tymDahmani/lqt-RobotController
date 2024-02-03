@@ -1,3 +1,6 @@
 include ':FtcRobotController'
 include ':TeamCode'
 include ':meepmeep1'
+include ':road-runner-quickstart-master'
+include ':TeamCodeRR'
+include ':meepmeep_v1'

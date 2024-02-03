@@ -1,9 +1,10 @@
-package org.firstinspires.ftc.teamcode.openCV__autoDetect;
+package org.firstinspires.ftc.teamcode.eocvDetect;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.eocvDetect.pipeline_test;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -45,7 +46,7 @@ public class pipelineDetectTest_opmode extends LinearOpMode {
 
         waitForStart();
 
-        switch (pipeline_test.pos_of_tp) {
+        switch (pipeline_test.getPos_of_tp()) {
             case LEFT:
                 // code to be executed if expression == LEFT
                 telemetry.addLine("position detected is left");

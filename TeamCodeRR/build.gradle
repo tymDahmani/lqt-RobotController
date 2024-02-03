@@ -23,17 +23,17 @@ android {
     }
 }
 
+repositories {
+    maven {
+        url = 'https://maven.brott.dev/'
+    }
+}
+
 dependencies {
     implementation project(':FtcRobotController')
     annotationProcessor files('lib/OpModeAnnotationProcessor.jar')
-}
-dependencies {
-    implementation 'org.openftc:easyopencv:1.7.1'
-}
-dependencies {
 
-    implementation project(path: ':TeamCodeRR')
-    implementation 'com.google.ar:core:1.30.0'
-    implementation 'org.openftc:apriltag:2.0.0'
-    implementation 'org.ftclib.ftclib:core:2.0.1'
+    implementation "com.acmerobotics.roadrunner:ftc:0.1.11"
+    implementation "com.acmerobotics.dashboard:dashboard:0.4.14"
+    implementation project(':road-runner-quickstart-master')
 }
