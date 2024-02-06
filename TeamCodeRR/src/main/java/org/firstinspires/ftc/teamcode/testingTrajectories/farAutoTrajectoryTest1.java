@@ -4,6 +4,11 @@ import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.MecanumDrive;
@@ -71,16 +76,34 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 
  */
 
-public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
+public class farAutoTrajectoryTest1 extends LinearOpMode {
 
     blobDetectionTest detector = new blobDetectionTest(telemetry);
     OpenCvCamera webCam;
 
     int tpPos = blobDetectionTest.tp_zone;
 
+    // slides
+    DcMotor slideL;
+    DcMotor slideR;
+
+    // arm base core
+    DcMotor armBase;
+
+    // gripper arm core
+    DcMotor gripperArm;
+
+    // gripper tilting servo
+    CRServo tilting;
+
+    // grippers
+    Servo gripperL;
+    Servo gripperR;
+
     @Override
     public void runOpMode() throws InterruptedException {
-        // hey
+
+
         // webCam and pipeline init
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webCam1");
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
@@ -88,12 +111,37 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
 
         webCam.setPipeline(detector);
 
+        slideL = hardwareMap.get(DcMotor.class, "SlideL");
+        slideR = hardwareMap.get(DcMotor.class, "SlideR");
+        armBase = hardwareMap.get(DcMotor.class, "armBase");
+        gripperArm = hardwareMap.get(DcMotor.class, "gripperArm");
+        tilting = hardwareMap.get(CRServo.class, "tilting");
+        gripperL = hardwareMap.get(Servo.class, "gripperL");
+        gripperR = hardwareMap.get(Servo.class, "gripperR");
+
+        ((DcMotorEx) armBase).setVelocityPIDFCoefficients(0.2, 0.05, 0.01, 0.1);
+        ((DcMotorEx) armBase).setPositionPIDFCoefficients(5);
+
+        // TODO: fill out the pidf coefficients for the gripperArm
+//        ((DcMotorEx) gripperArm).setVelocityPIDFCoefficients(40, 0.1, 0.1, 50);
+//        ((DcMotorEx) gripperArm).setPositionPIDFCoefficients(5);
+        // reversed motors
+        gripperL.setDirection(Servo.Direction.REVERSE);
+        gripperArm.setDirection(DcMotorSimple.Direction.REVERSE);
+
+
+        // stop and reset encoder
+        slideL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        slideR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        gripperArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         webCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
         {
             @Override
             public void onOpened() {
                 // Usually this is where you'll want to start streaming from the camera (see section 4) this is in the easy opencv docs
-                webCam.startStreaming(1920, 1080, OpenCvCameraRotation.UPRIGHT);
+                webCam.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
 
 
             }
@@ -128,6 +176,23 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
 
             // drop purple pixel here
 
+            gripperArm.setTargetPosition(220);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+
+            sleep(1000);
+
+            gripperL.setPosition(0);
+            sleep(1000);
+            gripperL.setPosition(1);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(-220);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+
+
             sleep(2000);
 
             Pose2d beginPose2 = new Pose2d(12, -34.5, 5 * Math.PI / 6);
@@ -147,6 +212,23 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
 
             // pick a white pixel
 
+            gripperArm.setTargetPosition(80);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+            gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperL.setPosition(1);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(-90);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+
+            sleep(2000);
+
             Pose2d beginPose3 = new Pose2d(-52.75, -34.5, Math.PI);
             if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {
                 MecanumDrive drive = new MecanumDrive(hardwareMap, beginPose3);
@@ -162,6 +244,25 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
             }
 
             // drop yellow pixel
+
+            armBase.setTargetPosition(400);
+            armBase.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armBase.setPower(0.2);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(50);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+            sleep(1000);
+
+            gripperR.setPosition(0);
+            gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperL.setPosition(1);
+            gripperR.setPosition(1);
 
             sleep(2000);
 
@@ -194,7 +295,21 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
             }
 
             // drop purple pixel here
+            gripperArm.setTargetPosition(220);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
 
+            sleep(1000);
+
+            gripperL.setPosition(0);
+            sleep(1000);
+            gripperL.setPosition(1);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(-220);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
             sleep(2000);
 
             Pose2d beginPose2 = new Pose2d(12, -34.5, Math.PI / 2);
@@ -211,6 +326,22 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
             sleep(2000);
 
             // pick a white pixel
+            gripperArm.setTargetPosition(80);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+            gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperL.setPosition(1);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(-90);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+
+            sleep(2000);
 
             Pose2d beginPose3 = new Pose2d(-52.75, -34.5, Math.PI);
             if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {
@@ -227,6 +358,24 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
             }
 
             // drop yellow pixel
+            armBase.setTargetPosition(400);
+            armBase.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armBase.setPower(0.2);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(50);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+            sleep(1000);
+
+            gripperR.setPosition(0);
+            gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperL.setPosition(1);
+            gripperR.setPosition(1);
 
             sleep(2000);
 
@@ -255,6 +404,21 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
             }
 
             // drop purple pixel here
+            gripperArm.setTargetPosition(220);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+
+            sleep(1000);
+
+            gripperL.setPosition(0);
+            sleep(1000);
+            gripperL.setPosition(1);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(-220);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
 
             sleep(2000);
 
@@ -272,6 +436,22 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
             sleep(2000);
 
             // pick a white pixel
+            gripperArm.setTargetPosition(80);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+            gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperL.setPosition(1);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(-90);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+
+            sleep(2000);
 
             Pose2d beginPose3 = new Pose2d(-52.75, -34.5, Math.PI);
             if (TuningOpModes.DRIVE_CLASS.equals(MecanumDrive.class)) {
@@ -288,6 +468,24 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
             }
 
             // drop yellow pixel
+            armBase.setTargetPosition(400);
+            armBase.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armBase.setPower(0.2);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(50);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
+            sleep(1000);
+
+            gripperR.setPosition(0);
+            gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperL.setPosition(1);
+            gripperR.setPosition(1);
 
             sleep(2000);
 
