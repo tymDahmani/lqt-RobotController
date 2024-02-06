@@ -80,6 +80,7 @@ public class finalFarAutoTrajectoryTest1 extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+
         // webCam and pipeline init
         WebcamName webcamName = hardwareMap.get(WebcamName.class, "webCam1");
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
