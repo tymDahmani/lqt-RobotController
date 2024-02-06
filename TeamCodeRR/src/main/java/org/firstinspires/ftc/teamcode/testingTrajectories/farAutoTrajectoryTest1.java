@@ -176,7 +176,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             // drop purple pixel here
 
-            gripperArm.setTargetPosition(220);
+            gripperArm.setTargetPosition(-150);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
 
@@ -188,7 +188,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(-220);
+            gripperArm.setTargetPosition(0);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
 
@@ -212,7 +212,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             // pick a white pixel
 
-            gripperArm.setTargetPosition(80);
+            gripperArm.setTargetPosition(-170);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
             gripperL.setPosition(0);
@@ -223,7 +223,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(-90);
+            gripperArm.setTargetPosition(0);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
 
@@ -251,13 +251,19 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(50);
+            gripperArm.setTargetPosition(-90);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
             sleep(1000);
 
             gripperR.setPosition(0);
             gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(0);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
 
             sleep(1000);
 
@@ -295,7 +301,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
             }
 
             // drop purple pixel here
-            gripperArm.setTargetPosition(220);
+            gripperArm.setTargetPosition(-150);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
 
@@ -307,7 +313,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(-220);
+            gripperArm.setTargetPosition(0);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
             sleep(2000);
@@ -326,7 +332,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
             sleep(2000);
 
             // pick a white pixel
-            gripperArm.setTargetPosition(80);
+            gripperArm.setTargetPosition(-170);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
             gripperL.setPosition(0);
@@ -337,7 +343,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(-90);
+            gripperArm.setTargetPosition(0);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
 
@@ -364,13 +370,19 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(50);
+            gripperArm.setTargetPosition(-90);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
             sleep(1000);
 
             gripperR.setPosition(0);
             gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(0);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
 
             sleep(1000);
 
@@ -404,7 +416,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
             }
 
             // drop purple pixel here
-            gripperArm.setTargetPosition(220);
+            gripperArm.setTargetPosition(-150);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
 
@@ -416,7 +428,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(-220);
+            gripperArm.setTargetPosition(0);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
 
@@ -436,7 +448,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
             sleep(2000);
 
             // pick a white pixel
-            gripperArm.setTargetPosition(80);
+            gripperArm.setTargetPosition(-170);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
             gripperL.setPosition(0);
@@ -447,7 +459,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(-90);
+            gripperArm.setTargetPosition(0);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
 
@@ -474,13 +486,19 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
             sleep(1000);
 
-            gripperArm.setTargetPosition(50);
+            gripperArm.setTargetPosition(-90);
             gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             gripperArm.setPower(0.2);
             sleep(1000);
 
             gripperR.setPosition(0);
             gripperL.setPosition(0);
+
+            sleep(1000);
+
+            gripperArm.setTargetPosition(0);
+            gripperArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            gripperArm.setPower(0.2);
 
             sleep(1000);
 
