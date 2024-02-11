@@ -125,6 +125,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
         // TODO: fill out the pidf coefficients for the gripperArm
 //        ((DcMotorEx) gripperArm).setVelocityPIDFCoefficients(40, 0.1, 0.1, 50);
 //        ((DcMotorEx) gripperArm).setPositionPIDFCoefficients(5);
+
         // reversed motors
         gripperL.setDirection(Servo.Direction.REVERSE);
         gripperArm.setDirection(DcMotorSimple.Direction.REVERSE);
