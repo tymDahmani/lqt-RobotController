@@ -1,4 +1,4 @@
-package com.example.meepmeep_v1;
+package com.example.meepmeep_v1.farStrategy1;
 
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -17,10 +17,10 @@ public class strategy1farMidSpike {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-35.5, -64.25, Math.PI / 2))
-                .lineToY(-34.5)
+                .lineToY(-47)
                 .waitSeconds(4) // drop pixel
                 .setTangent(Math.PI)
-                .lineToXLinearHeading(-52.75, Math.PI)
+                .strafeToLinearHeading(new Vector2d(-52.75, -35.5), Math.PI)
                 .waitSeconds(3) // pick a white pixel from stack
                 .setTangent(Math.PI / 2)
                 .lineToYLinearHeading(-10.5, 2 * Math.PI)
