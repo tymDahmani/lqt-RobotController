@@ -119,12 +119,11 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
         gripperL = hardwareMap.get(Servo.class, "gripperL");
         gripperR = hardwareMap.get(Servo.class, "gripperR");
 
+        // pidf values
         ((DcMotorEx) armBase).setVelocityPIDFCoefficients(0.2, 0.05, 0.01, 0.1);
         ((DcMotorEx) armBase).setPositionPIDFCoefficients(5);
-
-        // TODO: fill out the pidf coefficients for the gripperArm
-//        ((DcMotorEx) gripperArm).setVelocityPIDFCoefficients(40, 0.1, 0.1, 50);
-//        ((DcMotorEx) gripperArm).setPositionPIDFCoefficients(5);
+        ((DcMotorEx) gripperArm).setVelocityPIDFCoefficients(0.15, 0.06, 0.02, 0.2);
+        ((DcMotorEx) gripperArm).setPositionPIDFCoefficients(5);
 
         // reversed motors
         gripperL.setDirection(Servo.Direction.REVERSE);
@@ -171,7 +170,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
                 Actions.runBlocking(
                         drive.actionBuilder(beginPose)
-                                .lineToYLinearHeading(-34.5, 5 * Math.PI / 6)
+                                .lineToYLinearHeading(-47, 2 * Math.PI / 3)
                                 .build());
             }
 
@@ -202,7 +201,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
                 Actions.runBlocking(
                         drive.actionBuilder(beginPose2)
-                                .turn(Math.PI / 6)
+                                .turn(Math.PI / 3)
                                 .strafeTo(new Vector2d(-35.5, -11.5))
                                 .setTangent(Math.PI)
                                 .lineToX(-52.75)
@@ -297,7 +296,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
                 Actions.runBlocking(
                         drive.actionBuilder(beginPose)
-                                .lineToY(-34.5)
+                                .lineToY(-47)
                                 .build());
             }
 
@@ -326,7 +325,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
                 Actions.runBlocking(
                         drive.actionBuilder(beginPose2)
                                 .setTangent(Math.PI)
-                                .lineToXLinearHeading(-52.75, Math.PI)
+                                .strafeToLinearHeading(new Vector2d(-52.75, -35.5), Math.PI)
                                 .build());
             }
 
@@ -412,7 +411,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
 
                 Actions.runBlocking(
                         drive.actionBuilder(beginPose)
-                                .lineToYLinearHeading(-34.5, Math.PI / 6)
+                                .lineToYLinearHeading(-47, Math.PI / 3)
                                 .build());
             }
 
@@ -442,7 +441,7 @@ public class farAutoTrajectoryTest1 extends LinearOpMode {
                 Actions.runBlocking(
                         drive.actionBuilder(beginPose2)
                                 .setTangent(Math.PI)
-                                .lineToXLinearHeading(-52.75, Math.PI)
+                                .strafeToLinearHeading(new Vector2d(-52.75, -35.5), Math.PI)
                                 .build());
             }
 
