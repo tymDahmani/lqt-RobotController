@@ -9,7 +9,7 @@ public class autoSelectorTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
 
-        while (!opModeIsActive() && !isStopRequested()) {
+        while (opModeInInit()) {
             selector.autoSelector();
         }
     }
